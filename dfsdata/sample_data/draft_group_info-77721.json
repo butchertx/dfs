@@ -1,0 +1,3332 @@
+{
+    "draftables": [
+        {
+            "id": 25329168,
+            "player_id": 732145,
+            "position": "RB",
+            "roster_slot_id": 511,
+            "salary": 17400,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Derrick",
+                "last": "Henry",
+                "display": "Derrick Henry",
+                "short": "D. Henry"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/19898.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/19898.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329169,
+            "player_id": 741314,
+            "position": "RB",
+            "roster_slot_id": 511,
+            "salary": 16800,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Aaron",
+                "last": "Jones",
+                "display": "Aaron Jones",
+                "short": "A. Jones"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/19636.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/19636.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329170,
+            "player_id": 213957,
+            "position": "QB",
+            "roster_slot_id": 511,
+            "salary": 15600,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Aaron",
+                "last": "Rodgers",
+                "display": "Aaron Rodgers",
+                "short": "Aa. Rodgers"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/19742.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/19742.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329171,
+            "player_id": 380960,
+            "position": "QB",
+            "roster_slot_id": 511,
+            "salary": 14400,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Ryan",
+                "last": "Tannehill",
+                "display": "Ryan Tannehill",
+                "short": "R. Tannehill"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/20020.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/20020.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329172,
+            "player_id": 837958,
+            "position": "WR",
+            "roster_slot_id": 511,
+            "salary": 12900,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Allen",
+                "last": "Lazard",
+                "display": "Allen Lazard",
+                "short": "A. Lazard"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/19670.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/19670.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329223,
+            "player_id": 732145,
+            "position": "RB",
+            "roster_slot_id": 512,
+            "salary": 11600,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Derrick",
+                "last": "Henry",
+                "display": "Derrick Henry",
+                "short": "D. Henry"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/19898.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/19898.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329224,
+            "player_id": 741314,
+            "position": "RB",
+            "roster_slot_id": 512,
+            "salary": 11200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Aaron",
+                "last": "Jones",
+                "display": "Aaron Jones",
+                "short": "A. Jones"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/19636.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/19636.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329173,
+            "player_id": 1067918,
+            "position": "WR",
+            "roster_slot_id": 511,
+            "salary": 11100,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Christian",
+                "last": "Watson",
+                "display": "Christian Watson",
+                "short": "C. Watson"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/640851.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/640851.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329225,
+            "player_id": 213957,
+            "position": "QB",
+            "roster_slot_id": 512,
+            "salary": 10400,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Aaron",
+                "last": "Rodgers",
+                "display": "Aaron Rodgers",
+                "short": "Aa. Rodgers"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/19742.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/19742.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329174,
+            "player_id": 555693,
+            "position": "WR",
+            "roster_slot_id": 511,
+            "salary": 10200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Robert",
+                "last": "Woods",
+                "display": "Robert Woods",
+                "short": "R. Woods"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/14251.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/14251.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329175,
+            "player_id": 1060545,
+            "position": "RB",
+            "roster_slot_id": 511,
+            "salary": 9900,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "AJ",
+                "last": "Dillon",
+                "display": "AJ Dillon",
+                "short": "A. Dillon"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/477267.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/477267.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329226,
+            "player_id": 380960,
+            "position": "QB",
+            "roster_slot_id": 512,
+            "salary": 9600,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Ryan",
+                "last": "Tannehill",
+                "display": "Ryan Tannehill",
+                "short": "R. Tannehill"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/20020.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/20020.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329176,
+            "player_id": 883259,
+            "position": "WR",
+            "roster_slot_id": 511,
+            "salary": 9300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Nick",
+                "last": "Westbrook-Ikhine",
+                "display": "Nick Westbrook-Ikhine",
+                "short": "N. Westbrook-Ikhine"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/488205.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/488205.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329177,
+            "player_id": 728374,
+            "position": "QB",
+            "roster_slot_id": 511,
+            "salary": 9000,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Danny",
+                "last": "Etling",
+                "display": "Danny Etling",
+                "short": "D. Etling"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/11073.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/11073.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329178,
+            "player_id": 732107,
+            "position": "QB",
+            "roster_slot_id": 511,
+            "salary": 9000,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Logan",
+                "last": "Woodside",
+                "display": "Logan Woodside",
+                "short": "L. Woodside"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/20051.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/20051.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329179,
+            "player_id": 976323,
+            "position": "QB",
+            "roster_slot_id": 511,
+            "salary": 9000,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Malik",
+                "last": "Willis",
+                "display": "Malik Willis",
+                "short": "M. Willis"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/631230.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/631230.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329180,
+            "player_id": 912137,
+            "position": "QB",
+            "roster_slot_id": 511,
+            "salary": 9000,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Jordan",
+                "last": "Love",
+                "display": "Jordan Love",
+                "short": "J. Love"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/470097.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/470097.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329181,
+            "player_id": 660151,
+            "position": "TE",
+            "roster_slot_id": 511,
+            "salary": 8700,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Robert",
+                "last": "Tonyan",
+                "display": "Robert Tonyan",
+                "short": "R. Tonyan"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/19800.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/19800.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329227,
+            "player_id": 837958,
+            "position": "WR",
+            "roster_slot_id": 512,
+            "salary": 8600,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Allen",
+                "last": "Lazard",
+                "display": "Allen Lazard",
+                "short": "A. Lazard"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/19670.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/19670.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329182,
+            "player_id": 1172024,
+            "position": "WR",
+            "roster_slot_id": 511,
+            "salary": 7800,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Treylon",
+                "last": "Burks",
+                "display": "Treylon Burks",
+                "short": "T. Burks"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/640768.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/640768.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329228,
+            "player_id": 1067918,
+            "position": "WR",
+            "roster_slot_id": 512,
+            "salary": 7400,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Christian",
+                "last": "Watson",
+                "display": "Christian Watson",
+                "short": "C. Watson"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/640851.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/640851.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329183,
+            "player_id": 602118,
+            "position": "WR",
+            "roster_slot_id": 511,
+            "salary": 7200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Sammy",
+                "last": "Watkins",
+                "display": "Sammy Watkins",
+                "short": "S. Watkins"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/12050.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/12050.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329184,
+            "player_id": 739424,
+            "position": "TE",
+            "roster_slot_id": 511,
+            "salary": 6900,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Austin",
+                "last": "Hooper",
+                "display": "Austin Hooper",
+                "short": "A. Hooper"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/11125.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/11125.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329229,
+            "player_id": 555693,
+            "position": "WR",
+            "roster_slot_id": 512,
+            "salary": 6800,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Robert",
+                "last": "Woods",
+                "display": "Robert Woods",
+                "short": "R. Woods"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/14251.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/14251.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329185,
+            "player_id": 336,
+            "position": "DST",
+            "roster_slot_id": 511,
+            "salary": 6600,
+            "swappable": true,
+            "disabled": false,
+            "news_status": null,
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Titans",
+                "last": "",
+                "display": "Titans",
+                "short": "Titans"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/teams/50/18366.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/teams/160/18366.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329230,
+            "player_id": 1060545,
+            "position": "RB",
+            "roster_slot_id": 512,
+            "salary": 6600,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "AJ",
+                "last": "Dillon",
+                "display": "AJ Dillon",
+                "short": "A. Dillon"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/477267.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/477267.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329186,
+            "player_id": 923929,
+            "position": "K",
+            "roster_slot_id": 511,
+            "salary": 6300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Caleb",
+                "last": "Shudak",
+                "display": "Caleb Shudak",
+                "short": "C. Shudak"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/642613.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/642613.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329187,
+            "player_id": 469127,
+            "position": "K",
+            "roster_slot_id": 511,
+            "salary": 6300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Randy",
+                "last": "Bullock",
+                "display": "Randy Bullock",
+                "short": "R. Bullock"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/13443.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/13443.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329231,
+            "player_id": 883259,
+            "position": "WR",
+            "roster_slot_id": 512,
+            "salary": 6200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Nick",
+                "last": "Westbrook-Ikhine",
+                "display": "Nick Westbrook-Ikhine",
+                "short": "N. Westbrook-Ikhine"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/488205.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/488205.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329188,
+            "player_id": 1076820,
+            "position": "K",
+            "roster_slot_id": 511,
+            "salary": 6000,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Ramiz",
+                "last": "Ahmed",
+                "display": "Ramiz Ahmed",
+                "short": "R. Ahmed"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/485172.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/485172.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329189,
+            "player_id": 214574,
+            "position": "K",
+            "roster_slot_id": 511,
+            "salary": 6000,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Mason",
+                "last": "Crosby",
+                "display": "Mason Crosby",
+                "short": "M. Crosby"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/19565.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/19565.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329232,
+            "player_id": 728374,
+            "position": "QB",
+            "roster_slot_id": 512,
+            "salary": 6000,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Danny",
+                "last": "Etling",
+                "display": "Danny Etling",
+                "short": "D. Etling"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/11073.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/11073.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329233,
+            "player_id": 732107,
+            "position": "QB",
+            "roster_slot_id": 512,
+            "salary": 6000,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Logan",
+                "last": "Woodside",
+                "display": "Logan Woodside",
+                "short": "L. Woodside"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/20051.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/20051.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329234,
+            "player_id": 976323,
+            "position": "QB",
+            "roster_slot_id": 512,
+            "salary": 6000,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Malik",
+                "last": "Willis",
+                "display": "Malik Willis",
+                "short": "M. Willis"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/631230.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/631230.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329235,
+            "player_id": 912137,
+            "position": "QB",
+            "roster_slot_id": 512,
+            "salary": 6000,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Jordan",
+                "last": "Love",
+                "display": "Jordan Love",
+                "short": "J. Love"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/470097.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/470097.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329236,
+            "player_id": 660151,
+            "position": "TE",
+            "roster_slot_id": 512,
+            "salary": 5800,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Robert",
+                "last": "Tonyan",
+                "display": "Robert Tonyan",
+                "short": "R. Tonyan"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/19800.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/19800.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329190,
+            "player_id": 335,
+            "position": "DST",
+            "roster_slot_id": 511,
+            "salary": 5700,
+            "swappable": true,
+            "disabled": false,
+            "news_status": null,
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Packers",
+                "last": "",
+                "display": "Packers",
+                "short": "Packers"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/teams/50/18357.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/teams/160/18357.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329237,
+            "player_id": 1172024,
+            "position": "WR",
+            "roster_slot_id": 512,
+            "salary": 5200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Treylon",
+                "last": "Burks",
+                "display": "Treylon Burks",
+                "short": "T. Burks"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/640768.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/640768.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329191,
+            "player_id": 821729,
+            "position": "RB",
+            "roster_slot_id": 511,
+            "salary": 4800,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Dontrell",
+                "last": "Hilliard",
+                "display": "Dontrell Hilliard",
+                "short": "D. Hilliard"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/14559.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/14559.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329238,
+            "player_id": 602118,
+            "position": "WR",
+            "roster_slot_id": 512,
+            "salary": 4800,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Sammy",
+                "last": "Watkins",
+                "display": "Sammy Watkins",
+                "short": "S. Watkins"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/12050.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/12050.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329239,
+            "player_id": 739424,
+            "position": "TE",
+            "roster_slot_id": 512,
+            "salary": 4600,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Austin",
+                "last": "Hooper",
+                "display": "Austin Hooper",
+                "short": "A. Hooper"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/11125.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/11125.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329240,
+            "player_id": 336,
+            "position": "DST",
+            "roster_slot_id": 512,
+            "salary": 4400,
+            "swappable": true,
+            "disabled": false,
+            "news_status": null,
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Titans",
+                "last": "",
+                "display": "Titans",
+                "short": "Titans"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/teams/50/18366.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/teams/160/18366.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329241,
+            "player_id": 923929,
+            "position": "K",
+            "roster_slot_id": 512,
+            "salary": 4200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Caleb",
+                "last": "Shudak",
+                "display": "Caleb Shudak",
+                "short": "C. Shudak"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/642613.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/642613.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329242,
+            "player_id": 469127,
+            "position": "K",
+            "roster_slot_id": 512,
+            "salary": 4200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Randy",
+                "last": "Bullock",
+                "display": "Randy Bullock",
+                "short": "R. Bullock"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/13443.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/13443.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329243,
+            "player_id": 1076820,
+            "position": "K",
+            "roster_slot_id": 512,
+            "salary": 4000,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Ramiz",
+                "last": "Ahmed",
+                "display": "Ramiz Ahmed",
+                "short": "R. Ahmed"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/485172.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/485172.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329244,
+            "player_id": 214574,
+            "position": "K",
+            "roster_slot_id": 512,
+            "salary": 4000,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Mason",
+                "last": "Crosby",
+                "display": "Mason Crosby",
+                "short": "M. Crosby"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/19565.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/19565.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329192,
+            "player_id": 1106374,
+            "position": "TE",
+            "roster_slot_id": 511,
+            "salary": 3900,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Chig",
+                "last": "Okonkwo",
+                "display": "Chig Okonkwo",
+                "short": "C. Okonkwo"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/641038.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/641038.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329245,
+            "player_id": 335,
+            "position": "DST",
+            "roster_slot_id": 512,
+            "salary": 3800,
+            "swappable": true,
+            "disabled": false,
+            "news_status": null,
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Packers",
+                "last": "",
+                "display": "Packers",
+                "short": "Packers"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/teams/50/18357.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/teams/160/18357.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329246,
+            "player_id": 821729,
+            "position": "RB",
+            "roster_slot_id": 512,
+            "salary": 3200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Dontrell",
+                "last": "Hilliard",
+                "display": "Dontrell Hilliard",
+                "short": "D. Hilliard"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/14559.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/14559.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329193,
+            "player_id": 866149,
+            "position": "TE",
+            "roster_slot_id": 511,
+            "salary": 2700,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Josiah",
+                "last": "Deguara",
+                "display": "Josiah Deguara",
+                "short": "J. Deguara"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/485524.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/485524.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329247,
+            "player_id": 1106374,
+            "position": "TE",
+            "roster_slot_id": 512,
+            "salary": 2600,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Chig",
+                "last": "Okonkwo",
+                "display": "Chig Okonkwo",
+                "short": "C. Okonkwo"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/641038.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/641038.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329194,
+            "player_id": 920560,
+            "position": "WR",
+            "roster_slot_id": 511,
+            "salary": 1800,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Samori",
+                "last": "Toure",
+                "display": "Samori Toure",
+                "short": "S. Toure"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/641153.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/641153.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329248,
+            "player_id": 866149,
+            "position": "TE",
+            "roster_slot_id": 512,
+            "salary": 1800,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Josiah",
+                "last": "Deguara",
+                "display": "Josiah Deguara",
+                "short": "J. Deguara"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/485524.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/485524.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329249,
+            "player_id": 920560,
+            "position": "WR",
+            "roster_slot_id": 512,
+            "salary": 1200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Samori",
+                "last": "Toure",
+                "display": "Samori Toure",
+                "short": "S. Toure"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/641153.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/641153.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329195,
+            "player_id": 214197,
+            "position": "TE",
+            "roster_slot_id": 511,
+            "salary": 900,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Marcedes",
+                "last": "Lewis",
+                "display": "Marcedes Lewis",
+                "short": "M. Lewis"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/19673.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/19673.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329250,
+            "player_id": 214197,
+            "position": "TE",
+            "roster_slot_id": 512,
+            "salary": 600,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Marcedes",
+                "last": "Lewis",
+                "display": "Marcedes Lewis",
+                "short": "M. Lewis"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/19673.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/19673.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329196,
+            "player_id": 1122653,
+            "position": "WR",
+            "roster_slot_id": 511,
+            "salary": 300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Romeo",
+                "last": "Doubs",
+                "display": "Romeo Doubs",
+                "short": "R. Doubs"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/641025.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/641025.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329197,
+            "player_id": 1073153,
+            "position": "RB",
+            "roster_slot_id": 511,
+            "salary": 300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Kylin",
+                "last": "Hill",
+                "display": "Kylin Hill",
+                "short": "K. Hill"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/560953.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/560953.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329198,
+            "player_id": 1125846,
+            "position": "RB",
+            "roster_slot_id": 511,
+            "salary": 300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Julius",
+                "last": "Chestnut",
+                "display": "Julius Chestnut",
+                "short": "J. Chestnut"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/641294.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/641294.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329199,
+            "player_id": 1130230,
+            "position": "RB",
+            "roster_slot_id": 511,
+            "salary": 300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Hassan",
+                "last": "Haskins",
+                "display": "Hassan Haskins",
+                "short": "H. Haskins"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/641022.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/641022.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329200,
+            "player_id": 465949,
+            "position": "WR",
+            "roster_slot_id": 511,
+            "salary": 300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Randall",
+                "last": "Cobb",
+                "display": "Randall Cobb",
+                "short": "R. Cobb"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/15064.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/15064.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329201,
+            "player_id": 1075216,
+            "position": "RB",
+            "roster_slot_id": 511,
+            "salary": 300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Trenton",
+                "last": "Cannon",
+                "display": "Trenton Cannon",
+                "short": "T. Cannon"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/19457.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/19457.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329202,
+            "player_id": 696881,
+            "position": "WR",
+            "roster_slot_id": 511,
+            "salary": 300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Cody",
+                "last": "Hollister",
+                "display": "Cody Hollister",
+                "short": "C. Hollister"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/19909.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/19909.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329203,
+            "player_id": 1168918,
+            "position": "RB",
+            "roster_slot_id": 511,
+            "salary": 300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Tyler",
+                "last": "Goodson",
+                "display": "Tyler Goodson",
+                "short": "T. Goodson"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/641290.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/641290.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329204,
+            "player_id": 978580,
+            "position": "WR",
+            "roster_slot_id": 511,
+            "salary": 300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Amari",
+                "last": "Rodgers",
+                "display": "Amari Rodgers",
+                "short": "Am. Rodgers"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/560758.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/560758.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329205,
+            "player_id": 1128108,
+            "position": "WR",
+            "roster_slot_id": 511,
+            "salary": 300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Kyle",
+                "last": "Philips",
+                "display": "Kyle Philips",
+                "short": "K. Philips"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/641055.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/641055.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329206,
+            "player_id": 923834,
+            "position": "WR",
+            "roster_slot_id": 511,
+            "salary": 300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Dez",
+                "last": "Fitzpatrick",
+                "display": "Dez Fitzpatrick",
+                "short": "D. Fitzpatrick"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/546458.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/546458.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329207,
+            "player_id": 728021,
+            "position": "TE",
+            "roster_slot_id": 511,
+            "salary": 300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Geoff",
+                "last": "Swaim",
+                "display": "Geoff Swaim",
+                "short": "G. Swaim"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/16924.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/16924.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329208,
+            "player_id": 1050026,
+            "position": "TE",
+            "roster_slot_id": 511,
+            "salary": 300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Antony",
+                "last": "Auclair",
+                "display": "Antony Auclair",
+                "short": "A. Auclair"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/20072.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/20072.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329209,
+            "player_id": 866174,
+            "position": "TE",
+            "roster_slot_id": 511,
+            "salary": 300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Tyler",
+                "last": "Davis",
+                "display": "Tyler Davis",
+                "short": "T. Davis"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/485633.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/485633.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329210,
+            "player_id": 976645,
+            "position": "RB",
+            "roster_slot_id": 511,
+            "salary": 300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Breaking",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Tory",
+                "last": "Carter",
+                "display": "Tory Carter",
+                "short": "T. Carter"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/564049.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/564049.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329211,
+            "player_id": 1108526,
+            "position": "TE",
+            "roster_slot_id": 511,
+            "salary": 300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Thomas",
+                "last": "Odukoya",
+                "display": "Thomas Odukoya",
+                "short": "T. Odukoya"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/641378.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/641378.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329212,
+            "player_id": 943635,
+            "position": "RB",
+            "roster_slot_id": 511,
+            "salary": 300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Patrick",
+                "last": "Taylor",
+                "display": "Patrick Taylor",
+                "short": "P. Taylor"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/485722.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/485722.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329213,
+            "player_id": 695408,
+            "position": "WR",
+            "roster_slot_id": 511,
+            "salary": 300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "C.J.",
+                "last": "Board",
+                "display": "C.J. Board",
+                "short": "C. Board"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/20482.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/20482.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329214,
+            "player_id": 591801,
+            "position": "WR",
+            "roster_slot_id": 511,
+            "salary": 300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Chris",
+                "last": "Conley",
+                "display": "Chris Conley",
+                "short": "C. Conley"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/20504.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/20504.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329215,
+            "player_id": 840531,
+            "position": "TE",
+            "roster_slot_id": 511,
+            "salary": 300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Kevin",
+                "last": "Rader",
+                "display": "Kevin Rader",
+                "short": "K. Rader"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/18762.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/18762.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329216,
+            "player_id": 836079,
+            "position": "WR",
+            "roster_slot_id": 511,
+            "salary": 300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Juwann",
+                "last": "Winfree",
+                "display": "Juwann Winfree",
+                "short": "J. Winfree"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/19098.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/19098.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329217,
+            "player_id": 976658,
+            "position": "WR",
+            "roster_slot_id": 511,
+            "salary": 300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Racey",
+                "last": "McMath",
+                "display": "Racey McMath",
+                "short": "R. McMath"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/560903.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/560903.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329218,
+            "player_id": 1215308,
+            "position": "WR",
+            "roster_slot_id": 511,
+            "salary": 300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Mason",
+                "last": "Kinsey",
+                "display": "Mason Kinsey",
+                "short": "M. Kinsey"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/488207.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/488207.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329219,
+            "player_id": 1056649,
+            "position": "TE",
+            "roster_slot_id": 511,
+            "salary": 300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": null,
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Jack",
+                "last": "Coco",
+                "display": "Jack Coco",
+                "short": "J. Coco"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/643317.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/643317.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329220,
+            "player_id": 1074309,
+            "position": "WR",
+            "roster_slot_id": 511,
+            "salary": 300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Breaking",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Jeff",
+                "last": "Cotton Jr.",
+                "display": "Jeff Cotton Jr.",
+                "short": "J. Cotton Jr."
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/485876.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/485876.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329221,
+            "player_id": 1067859,
+            "position": "TE",
+            "roster_slot_id": 511,
+            "salary": 300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Josh",
+                "last": "Babicz",
+                "display": "Josh Babicz",
+                "short": "J. Babicz"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/641238.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/641238.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329222,
+            "player_id": 839325,
+            "position": "WR",
+            "roster_slot_id": 511,
+            "salary": 300,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Travis",
+                "last": "Fulgham",
+                "display": "Travis Fulgham",
+                "short": "T. Fulgham"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/19239.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/19239.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329251,
+            "player_id": 1122653,
+            "position": "WR",
+            "roster_slot_id": 512,
+            "salary": 200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Romeo",
+                "last": "Doubs",
+                "display": "Romeo Doubs",
+                "short": "R. Doubs"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/641025.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/641025.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329252,
+            "player_id": 1073153,
+            "position": "RB",
+            "roster_slot_id": 512,
+            "salary": 200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Kylin",
+                "last": "Hill",
+                "display": "Kylin Hill",
+                "short": "K. Hill"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/560953.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/560953.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329253,
+            "player_id": 1125846,
+            "position": "RB",
+            "roster_slot_id": 512,
+            "salary": 200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Julius",
+                "last": "Chestnut",
+                "display": "Julius Chestnut",
+                "short": "J. Chestnut"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/641294.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/641294.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329254,
+            "player_id": 1130230,
+            "position": "RB",
+            "roster_slot_id": 512,
+            "salary": 200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Hassan",
+                "last": "Haskins",
+                "display": "Hassan Haskins",
+                "short": "H. Haskins"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/641022.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/641022.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329255,
+            "player_id": 465949,
+            "position": "WR",
+            "roster_slot_id": 512,
+            "salary": 200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Randall",
+                "last": "Cobb",
+                "display": "Randall Cobb",
+                "short": "R. Cobb"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/15064.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/15064.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329256,
+            "player_id": 1075216,
+            "position": "RB",
+            "roster_slot_id": 512,
+            "salary": 200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Trenton",
+                "last": "Cannon",
+                "display": "Trenton Cannon",
+                "short": "T. Cannon"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/19457.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/19457.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329257,
+            "player_id": 696881,
+            "position": "WR",
+            "roster_slot_id": 512,
+            "salary": 200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Cody",
+                "last": "Hollister",
+                "display": "Cody Hollister",
+                "short": "C. Hollister"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/19909.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/19909.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329258,
+            "player_id": 1168918,
+            "position": "RB",
+            "roster_slot_id": 512,
+            "salary": 200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Tyler",
+                "last": "Goodson",
+                "display": "Tyler Goodson",
+                "short": "T. Goodson"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/641290.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/641290.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329259,
+            "player_id": 978580,
+            "position": "WR",
+            "roster_slot_id": 512,
+            "salary": 200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Amari",
+                "last": "Rodgers",
+                "display": "Amari Rodgers",
+                "short": "Am. Rodgers"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/560758.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/560758.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329260,
+            "player_id": 1128108,
+            "position": "WR",
+            "roster_slot_id": 512,
+            "salary": 200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Kyle",
+                "last": "Philips",
+                "display": "Kyle Philips",
+                "short": "K. Philips"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/641055.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/641055.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329261,
+            "player_id": 923834,
+            "position": "WR",
+            "roster_slot_id": 512,
+            "salary": 200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Dez",
+                "last": "Fitzpatrick",
+                "display": "Dez Fitzpatrick",
+                "short": "D. Fitzpatrick"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/546458.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/546458.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329262,
+            "player_id": 728021,
+            "position": "TE",
+            "roster_slot_id": 512,
+            "salary": 200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Geoff",
+                "last": "Swaim",
+                "display": "Geoff Swaim",
+                "short": "G. Swaim"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/16924.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/16924.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329263,
+            "player_id": 1050026,
+            "position": "TE",
+            "roster_slot_id": 512,
+            "salary": 200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Antony",
+                "last": "Auclair",
+                "display": "Antony Auclair",
+                "short": "A. Auclair"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/20072.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/20072.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329264,
+            "player_id": 866174,
+            "position": "TE",
+            "roster_slot_id": 512,
+            "salary": 200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Tyler",
+                "last": "Davis",
+                "display": "Tyler Davis",
+                "short": "T. Davis"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/485633.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/485633.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329265,
+            "player_id": 976645,
+            "position": "RB",
+            "roster_slot_id": 512,
+            "salary": 200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Breaking",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Tory",
+                "last": "Carter",
+                "display": "Tory Carter",
+                "short": "T. Carter"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/564049.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/564049.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329266,
+            "player_id": 1108526,
+            "position": "TE",
+            "roster_slot_id": 512,
+            "salary": 200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Thomas",
+                "last": "Odukoya",
+                "display": "Thomas Odukoya",
+                "short": "T. Odukoya"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/641378.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/641378.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329267,
+            "player_id": 943635,
+            "position": "RB",
+            "roster_slot_id": 512,
+            "salary": 200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Patrick",
+                "last": "Taylor",
+                "display": "Patrick Taylor",
+                "short": "P. Taylor"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/485722.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/485722.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329268,
+            "player_id": 695408,
+            "position": "WR",
+            "roster_slot_id": 512,
+            "salary": 200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "C.J.",
+                "last": "Board",
+                "display": "C.J. Board",
+                "short": "C. Board"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/20482.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/20482.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329269,
+            "player_id": 591801,
+            "position": "WR",
+            "roster_slot_id": 512,
+            "salary": 200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Recent",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Chris",
+                "last": "Conley",
+                "display": "Chris Conley",
+                "short": "C. Conley"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/20504.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/20504.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329270,
+            "player_id": 840531,
+            "position": "TE",
+            "roster_slot_id": 512,
+            "salary": 200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Kevin",
+                "last": "Rader",
+                "display": "Kevin Rader",
+                "short": "K. Rader"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/18762.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/18762.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329271,
+            "player_id": 836079,
+            "position": "WR",
+            "roster_slot_id": 512,
+            "salary": 200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Juwann",
+                "last": "Winfree",
+                "display": "Juwann Winfree",
+                "short": "J. Winfree"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/19098.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/19098.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329272,
+            "player_id": 976658,
+            "position": "WR",
+            "roster_slot_id": 512,
+            "salary": 200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Racey",
+                "last": "McMath",
+                "display": "Racey McMath",
+                "short": "R. McMath"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/560903.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/560903.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329273,
+            "player_id": 1215308,
+            "position": "WR",
+            "roster_slot_id": 512,
+            "salary": 200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 336,
+            "team_abbreviation": "TEN",
+            "draft_alerts": [],
+            "names": {
+                "first": "Mason",
+                "last": "Kinsey",
+                "display": "Mason Kinsey",
+                "short": "M. Kinsey"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/488207.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/488207.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329274,
+            "player_id": 1056649,
+            "position": "TE",
+            "roster_slot_id": 512,
+            "salary": 200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": null,
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Jack",
+                "last": "Coco",
+                "display": "Jack Coco",
+                "short": "J. Coco"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/643317.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/643317.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329275,
+            "player_id": 1074309,
+            "position": "WR",
+            "roster_slot_id": 512,
+            "salary": 200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "Breaking",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Jeff",
+                "last": "Cotton Jr.",
+                "display": "Jeff Cotton Jr.",
+                "short": "J. Cotton Jr."
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/485876.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/485876.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329276,
+            "player_id": 1067859,
+            "position": "TE",
+            "roster_slot_id": 512,
+            "salary": 200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Josh",
+                "last": "Babicz",
+                "display": "Josh Babicz",
+                "short": "J. Babicz"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/641238.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/641238.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        },
+        {
+            "id": 25329277,
+            "player_id": 839325,
+            "position": "WR",
+            "roster_slot_id": 512,
+            "salary": 200,
+            "swappable": true,
+            "disabled": false,
+            "news_status": "None",
+            "team_id": 335,
+            "team_abbreviation": "GB",
+            "draft_alerts": [],
+            "names": {
+                "first": "Travis",
+                "last": "Fulgham",
+                "display": "Travis Fulgham",
+                "short": "T. Fulgham"
+            },
+            "images": {
+                "full": null,
+                "50": "https://dkn.gs/sports/images/nfl/players/50/19239.png",
+                "65": null,
+                "160": "https://dkn.gs/sports/images/nfl/players/160/19239.png"
+            },
+            "competition": {
+                "id": 5818161,
+                "name": "TEN @ GB",
+                "starts_at": "2022-11-18T01:15:00.0000000Z"
+            }
+        }
+    ],
+    "competitions": [
+        {
+            "id": 5818161,
+            "name": "TEN @ GB",
+            "starts_at": "2022-11-18T01:15:00.0000000Z",
+            "sport": null,
+            "venue": "Lambeau Field",
+            "starting_lineups_available": false,
+            "depth_charts_available": true,
+            "state": "Upcoming",
+            "home_team": {
+                "id": 335,
+                "name": "Packers",
+                "abbreviation": "GB",
+                "city": "Green Bay"
+            },
+            "away_team": {
+                "id": 336,
+                "name": "Titans",
+                "abbreviation": "TEN",
+                "city": "Tennessee"
+            },
+            "weather": {
+                "type": "partly-cloudy-night",
+                "dome": false
+            }
+        }
+    ]
+}

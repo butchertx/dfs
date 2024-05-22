@@ -1,0 +1,81 @@
+{
+    "contestDetail": {
+        "contestSummary": "This 62-player contest features $54.00 in total prizes and pays out the top 27 finishing positions. First place wins $2.00.",
+        "payoutSummary": [
+            {
+                "minPosition": 1,
+                "maxPosition": 27,
+                "tierPayoutDescriptions": {
+                    "Cash": "$2.00"
+                },
+                "payoutDescriptions": [
+                    {
+                        "payoutDescriptionType": "Text",
+                        "order": 1,
+                        "payoutDescription": "$2.00",
+                        "quantity": 1,
+                        "value": 2.0
+                    }
+                ]
+            }
+        ],
+        "PayoutDescription": "$54",
+        "IsCashPrizeOnly": true,
+        "scoringStyleId": 1,
+        "contestStateDetail": "Upcoming",
+        "sport": "NFL",
+        "isGuaranteed": true,
+        "isPrivate": false,
+        "isResizable": false,
+        "wasResized": false,
+        "exclusions": [
+            "AllContests",
+            "ContestTypeBlackList-96",
+            "GameTypeBlackList-96",
+            "PaidGameTypeBlackList-96",
+            "SportsBlackList-0",
+            "PaidContests",
+            "PublicContest"
+        ],
+        "acceptedTickets": [
+            532
+        ],
+        "payoutDescriptions": {
+            "Cash": "$54.00"
+        },
+        "payoutDescriptionMetadata": [
+            {
+                "payoutDescriptionType": "Text",
+                "order": 0,
+                "payoutDescription": "$54.00",
+                "quantity": 1,
+                "value": 54.0
+            }
+        ],
+        "fppAward": 1,
+        "sortOrder": 1052991,
+        "filters": [],
+        "contestStartTime": "2022-11-18T01:15:00.0000000Z",
+        "gameTypeId": 96,
+        "ticketOnlyEntry": false,
+        "gameSetKey": "34CB57535564B78EECF6596049810488",
+        "contestKey": "136685908",
+        "name": "NFL Showdown $1 Double Up (TEN vs GB)",
+        "draftGroupId": 77721,
+        "playTypeId": 110330,
+        "entries": 1,
+        "maximumEntries": 62,
+        "maximumEntriesPerUser": 1,
+        "entryFee": 1,
+        "crownAmount": 550,
+        "totalPayouts": 54.0,
+        "contestState": "Upcoming",
+        "attributes": {
+            "IsGuranteed": "true",
+            "IsDoubleUp": "true",
+            "Is FiftyFifty": "true",
+            "Draft Team Contest Description": " "
+        }
+    },
+    "errorStatus": {}
+}
