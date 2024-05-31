@@ -56,7 +56,7 @@ CREATE TABLE public.team_games (
     season integer NOT NULL,
     opp_team character varying(255) NOT NULL,
     home_team boolean NOT NULL,
-    result character NOT NULL
+    result character varying(255) NOT NULL
 );
 
 
