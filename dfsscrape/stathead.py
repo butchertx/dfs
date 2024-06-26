@@ -13,6 +13,9 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
 from dfsscrape import urls
+from dfsutil.timer import Timer
+
+TIMER = Timer()
 
 # URL = urls.NCAA_MM_FIRST4_85_TO_24
 # OUTFILE = "../data_output/ncaam_first4.csv"
@@ -65,10 +68,13 @@ def read_stathead_pages(url: str):
 
     try:
         # log in to stathead
+        TIMER.flag_start_time('Get URL')
         driver.get(url)
+        TIMER.flag_end_time('Get URL')
         while True:
             # Find results table to confirm the search executed
-            num_trials = 10
+            TIMER.flag_start_time('Get Table')
+            num_trials = 20
             for trial in range(num_trials):
                 try:
                     time.sleep(0.1)
@@ -77,13 +83,19 @@ def read_stathead_pages(url: str):
                 except NoSuchElementException:
                     if trial == num_trials:
                         raise Exception('Failed to load table')
+            TIMER.flag_end_time('Get Table')
 
             html = driver.page_source
             soup = BeautifulSoup(html, 'html.parser')
+            
+            TIMER.flag_start_time('Read Table')
             page_table = read_stathead_table(soup)
+            TIMER.flag_end_time('Read Table')
+            
             page_table_list.append(page_table)
             print(page_table.iloc[-1].values)
             try:
+                TIMER.flag_start_time('Get Next Page')
                 next_page = driver.find_elements('xpath', '//*[@id="stathead_results"]/div[5]/a')
                 next_page_found = False
                 for n in next_page:
@@ -95,11 +107,14 @@ def read_stathead_pages(url: str):
                     break
             except NoSuchElementException:
                 break
+            TIMER.flag_end_time('Get Next Page')
 
         driver.quit()
         
+        TIMER.flag_start_time('Build DataFrame')
         if len(page_table_list) > 0:
             data = pd.concat(page_table_list)
+            TIMER.flag_end_time('Build DataFrame')
             return data
     except:
         pass
@@ -124,5 +139,7 @@ if __name__ == '__main__':
         print(filepath)
         if not os.path.exists(filepath):
             data = read_stathead_pages(url_func(year))
-            if len(data) > 0:
-                data.to_csv(filepath, header=True, index=False)
+            TIMER.print_timers()
+            # if len(data) > 0:
+                # data.to_csv(filepath, header=True, index=False)
+                
