@@ -2,6 +2,7 @@ import time
 import os
 import pathlib
 from enum import Enum
+from itertools import product
 
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -16,6 +17,11 @@ from dfsscrape import urls
 # URL = urls.NCAA_MM_FIRST4_85_TO_24
 # OUTFILE = "../data_output/ncaam_first4.csv"
 
+def filename_from_func(func, year):
+    func_name = func.__name__.split('.')[-1].lower()
+    parent_dir = pathlib.Path(__file__).parent.resolve()
+    filepath = parent_dir / f'data/{func_name}_{year}.csv'
+    return filepath
 
 class MultipleEmptyColumnNamesException(Exception):
     pass
@@ -53,50 +59,70 @@ def read_stathead_pages(url: str):
     chromedata = os.path.join(pathlib.Path(__file__).parent.absolute(), 'chrome-data')
     chrome_options.add_argument('--user-data-dir=' + chromedata)
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
-
-    # log in to stathead
-    driver.get(url)
+    
+    
     page_table_list = []
-    while True:
-        try:
-            time.sleep(2)
+
+    try:
+        # log in to stathead
+        driver.get(url)
+        while True:
             # Find results table to confirm the search executed
-            driver.find_element('xpath', '//*[@id="results"]/tbody/tr[1]')
-        except NoSuchElementException:
+            num_trials = 10
+            for trial in range(num_trials):
+                try:
+                    time.sleep(0.1)
+                    driver.find_element('xpath', '//*[@id="results"]/tbody/tr[1]')
+                    break
+                except NoSuchElementException:
+                    if trial == num_trials:
+                        raise Exception('Failed to load table')
+
+            html = driver.page_source
+            soup = BeautifulSoup(html, 'html.parser')
+            page_table = read_stathead_table(soup)
+            page_table_list.append(page_table)
+            print(page_table.iloc[-1].values)
             try:
-                driver.find_element('xpath', '//*[@id="stats"]/tbody/tr[1]')
+                next_page = driver.find_elements('xpath', '//*[@id="stathead_results"]/div[5]/a')
+                next_page_found = False
+                for n in next_page:
+                    if n.text == 'Next Page':
+                        next_page_found = True
+                        driver.get(n.get_attribute('href'))
+
+                if not next_page_found:
+                    break
             except NoSuchElementException:
                 break
 
-        html = driver.page_source
-        soup = BeautifulSoup(html, 'html.parser')
-        page_table = read_stathead_table(soup)
-        page_table_list.append(page_table)
-        print(page_table.iloc[-1].values)
-        try:
-            next_page = driver.find_elements('xpath', '//*[@id="stathead_results"]/div[5]/a')
-            next_page_found = False
-            for n in next_page:
-                if n.text == 'Next Page':
-                    next_page_found = True
-                    driver.get(n.get_attribute('href'))
+        driver.quit()
+        
+        if len(page_table_list) > 0:
+            data = pd.concat(page_table_list)
+            return data
+    except:
+        pass
 
-            if not next_page_found:
-                break
-        except NoSuchElementException:
-            break
-
-    driver.quit()
-    if len(page_table_list) > 0:
-        data = pd.concat(page_table_list)
-        return data
-    else:
-        return 'No data'
+    return pd.DataFrame()
 
 
 if __name__ == '__main__':
 
-    years = [str(val) for val in range(2005, 2025)]
-    for year in years:
-        data = read_stathead_pages(urls.NCAAM_REG_SEASON_TEAM_ADVANCED(year))
-        data.to_csv(f'dfsscrape/data/reg_season_advanced_{year}.csv', header=True, index=False)
+    years = [str(val) for val in range(2005, 2024)]
+    url_funcs = [
+        urls.NFL_PLAYER_GAMES_OFFENSE_ST,
+        urls.NFL_PLAYER_GAMES_DEFENSE_PUNTING,
+        urls.NFL_PLAYER_GAMES_TOUCHES,
+        urls.NFL_PLAYER_GAMES_PASSING,
+        urls.NFL_PLAYER_GAMES_SKILL_OFFENSE,
+        urls.NFL_PLAYER_GAMES_ADVANCED_DEFENSE,
+        urls.NFL_PLAYER_GAMES_SNAP_COUNTS
+    ]
+    for url_func, year in product(url_funcs, years):
+        filepath = filename_from_func(url_func, year)
+        print(filepath)
+        if not os.path.exists(filepath):
+            data = read_stathead_pages(url_func(year))
+            if len(data) > 0:
+                data.to_csv(filepath, header=True, index=False)
