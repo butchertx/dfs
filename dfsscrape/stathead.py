@@ -3,6 +3,7 @@ import os
 import pathlib
 from enum import Enum
 from itertools import product
+from typing import List
 
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -17,6 +18,10 @@ from dfsutil.timer import Timer
 
 TIMER = Timer()
 
+URL_FUNCS = [
+    urls.NFL_PLAYER_GAMES_PASSING
+]
+
 # URL = urls.NCAA_MM_FIRST4_85_TO_24
 # OUTFILE = "../data_output/ncaam_first4.csv"
 
@@ -28,14 +33,6 @@ def filename_from_func(func, year):
 
 class MultipleEmptyColumnNamesException(Exception):
     pass
-
-
-class TableType(Enum):
-    DRAFT = 0
-    PLAYER_GAME = 1
-    TEAM_GAME = 2
-    NCAAM_TEAM_GAMES = 3
-
 
 def read_stathead_table(soup):
     table = soup.find('tbody')
@@ -95,11 +92,8 @@ def read_stathead_pages(url: str):
                 TIMER.flag_start_time('Read Table')
                 page_table = read_stathead_table(soup)
                 TIMER.flag_end_time('Read Table')
-                offset += len(page_table)
                 
                 page_table_list.append(page_table)
-                print(page_table.iloc[-1].values)
-                
                 try:
                     TIMER.flag_start_time('Get Next Page')
                     next_page = driver.find_elements('xpath', '//*[@id="stathead_results"]/div[5]/a')
@@ -130,25 +124,24 @@ def read_stathead_pages(url: str):
 
     return pd.DataFrame()
 
+def read_and_output_single_query(url_func, year: str, replace=False):
+    filepath = filename_from_func(url_func, year)
+    if replace or (not os.path.exists(filepath)):
+        data = read_stathead_pages(url_func(year))
+        TIMER.print_timers()
+        TIMER.reset_timers()
+        if len(data) > 0:
+            data.to_csv(filepath, header=True, index=False)
+    else:
+        print(f'File {filepath} already exists!')
+            
+def read_and_output_all(years: List[str], replace=False):
+    for url_func, year in product(URL_FUNCS, years):
+        read_and_output_single_query(url_func, year, replace=False)
 
 if __name__ == '__main__':
 
     years = [str(val) for val in range(2005, 2024)]
-    url_funcs = [
-        urls.NFL_PLAYER_GAMES_OFFENSE_ST,
-        urls.NFL_PLAYER_GAMES_DEFENSE_PUNTING,
-        urls.NFL_PLAYER_GAMES_TOUCHES,
-        urls.NFL_PLAYER_GAMES_PASSING,
-        urls.NFL_PLAYER_GAMES_SKILL_OFFENSE,
-        urls.NFL_PLAYER_GAMES_ADVANCED_DEFENSE,
-        urls.NFL_PLAYER_GAMES_SNAP_COUNTS
-    ]
-    for url_func, year in product(url_funcs, years):
-        filepath = filename_from_func(url_func, year)
-        print(filepath)
-        if not os.path.exists(filepath):
-            data = read_stathead_pages(url_func(year))
-            TIMER.print_timers()
-            # if len(data) > 0:
-                # data.to_csv(filepath, header=True, index=False)
+    read_and_output_single_query(urls.NFL_PLAYER_GAMES_PASSING, '2016')
+    # read_and_output_all(years)
                 

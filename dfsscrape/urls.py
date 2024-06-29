@@ -34,7 +34,7 @@ def NFL_PLAYER_GAMES_DEFENSE_PUNTING(year: str):
 def NFL_PLAYER_GAMES_TOUCHES(year: str):
     return f"https://stathead.com/football/player-game-finder.cgi?request=1&order_by=age_on_day&timeframe=seasons&year_min={year}&year_max={year}&comp_type=E&ccomp%5B10%5D=gt&cstat%5B10%5D=touches"
 
-def NFL_PLAYER_GAMES_PASSING(year: str):
+def NFL_PLAYER_GAMES_PASSING_(year: str):
     return f"https://stathead.com/football/player-game-finder.cgi?request=1&order_by=age_on_day&timeframe=seasons&year_min={year}&year_max={year}&comp_type=E&ccomp%5B2%5D=gt&cstat%5B2%5D=pass_target_yds&ccomp%5B3%5D=gt&cstat%5B3%5D=pass_batted_passes&ccomp%5B4%5D=gt&cstat%5B4%5D=pocket_time&ccomp%5B5%5D=gt&cstat%5B5%5D=pass_rpo"
 
 def NFL_PLAYER_GAMES_SKILL_OFFENSE(year: str):
@@ -45,3 +45,9 @@ def NFL_PLAYER_GAMES_ADVANCED_DEFENSE(year: str):
 
 def NFL_PLAYER_GAMES_SNAP_COUNTS(year: str):
     return f"https://stathead.com/football/player-game-finder.cgi?request=1&order_by=age_on_day&timeframe=seasons&year_min={year}&year_max={year}&comp_type=E&ccomp%5B1%5D=gt&cstat%5B1%5D=snaps_offense"
+
+"""
+Refactored URLs with stats filters
+"""
+def NFL_PLAYER_GAMES_PASSING(year: str):
+    return f"https://stathead.com/football/player-game-finder.cgi?request=1&order_by=age_on_day&timeframe=seasons&year_min={year}&year_max={year}&comp_type=E&ccomp%5B8%5D=gt&cval%5B8%5D=1&cstat%5B8%5D=pass_att&ccomp%5B9%5D=gt&cstat%5B9%5D=rush_att&ccomp%5B11%5D=gt&cstat%5B11%5D=two_pt_md&ccomp%5B12%5D=gt&cstat%5B12%5D=fumbles&ccomp%5B13%5D=gt&cstat%5B13%5D=pass_target_yds&ccomp%5B14%5D=gt&cstat%5B14%5D=pass_batted_passes&ccomp%5B15%5D=gt&cstat%5B15%5D=pocket_time&ccomp%5B16%5D=gt&cstat%5B16%5D=pass_rpo"

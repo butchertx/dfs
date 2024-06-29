@@ -25,8 +25,17 @@ class Timer:
         else:
             logger.warning(f'{timer_name} end flagged without a start')
             
+    def reset_timers(self):
+        for timer_name in list(self.start_times):
+            self.start_times.pop(timer_name)
+        for timer_name in list(self.cumul_times):
+            self.cumul_times.pop(timer_name)
+            
     def print_timers(self):
         for timer_name in list(self.start_times):
             self.flag_end_time(timer_name)
         self.cumul_times['total time'] = sum(self.cumul_times.values())
-        print(self.cumul_times)
+        outstr = "Timer Results:"
+        for timer_name, time_total in self.cumul_times.items():
+            outstr += f"\n    {timer_name: >20}: {time_total:11.3f}s"
+        print(outstr)
