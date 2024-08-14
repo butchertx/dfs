@@ -25,29 +25,86 @@ def NCAAM_REG_SEASON_TEAM_ADVANCED(year: str):
 NFL Player Games
 reg season and playoffs
 """
-def NFL_PLAYER_GAMES_OFFENSE_ST(year: str):
+def NFL_PLAYER_GAMES_OFFENSE_ST_(year: str):
     return f"https://stathead.com/football/player-game-finder.cgi?request=1&order_by=age_on_day&timeframe=seasons&year_min={year}&year_max={year}&comp_type=E&ccomp%5B1%5D=gt&cstat%5B1%5D=pass_cmp&ccomp%5B2%5D=gt&cstat%5B2%5D=rush_att&ccomp%5B3%5D=gt&cstat%5B3%5D=targets&ccomp%5B4%5D=gt&cstat%5B4%5D=all_td&ccomp%5B5%5D=gt&cstat%5B5%5D=fantasy_points&ccomp%5B6%5D=gt&cstat%5B6%5D=kick_ret&ccomp%5B7%5D=gt&cstat%5B7%5D=punt_ret"
 
-def NFL_PLAYER_GAMES_DEFENSE_PUNTING(year: str):
+def NFL_PLAYER_GAMES_DEFENSE_PUNTING_(year: str):
     return f"https://stathead.com/football/player-game-finder.cgi?request=1&order_by=age_on_day&timeframe=seasons&year_min={year}&year_max={year}&comp_type=E&ccomp%5B8%5D=gt&cstat%5B8%5D=sacks&ccomp%5B9%5D=gt&cstat%5B9%5D=def_int&ccomp%5B10%5D=gt&cstat%5B10%5D=fumbles&ccomp%5B11%5D=gt&cstat%5B11%5D=punt"
 
-def NFL_PLAYER_GAMES_TOUCHES(year: str):
+def NFL_PLAYER_GAMES_TOUCHES_(year: str):
     return f"https://stathead.com/football/player-game-finder.cgi?request=1&order_by=age_on_day&timeframe=seasons&year_min={year}&year_max={year}&comp_type=E&ccomp%5B10%5D=gt&cstat%5B10%5D=touches"
 
 def NFL_PLAYER_GAMES_PASSING_(year: str):
     return f"https://stathead.com/football/player-game-finder.cgi?request=1&order_by=age_on_day&timeframe=seasons&year_min={year}&year_max={year}&comp_type=E&ccomp%5B2%5D=gt&cstat%5B2%5D=pass_target_yds&ccomp%5B3%5D=gt&cstat%5B3%5D=pass_batted_passes&ccomp%5B4%5D=gt&cstat%5B4%5D=pocket_time&ccomp%5B5%5D=gt&cstat%5B5%5D=pass_rpo"
 
-def NFL_PLAYER_GAMES_SKILL_OFFENSE(year: str):
+def NFL_PLAYER_GAMES_SKILL_OFFENSE_(year: str):
     return f"https://stathead.com/football/player-game-finder.cgi?request=1&order_by=age_on_day&timeframe=seasons&year_min={year}&year_max={year}&comp_type=E&ccomp%5B5%5D=gt&cstat%5B5%5D=rec_air_yds&ccomp%5B6%5D=gt&cstat%5B6%5D=rush_yds_before_contact"
 
-def NFL_PLAYER_GAMES_ADVANCED_DEFENSE(year: str):
+def NFL_PLAYER_GAMES_ADVANCED_DEFENSE_(year: str):
     return f"https://stathead.com/football/player-game-finder.cgi?request=1&order_by=age_on_day&timeframe=seasons&year_min={year}&year_max={year}&comp_type=E&ccomp%5B3%5D=gt&cstat%5B3%5D=def_targets"
 
-def NFL_PLAYER_GAMES_SNAP_COUNTS(year: str):
+def NFL_PLAYER_GAMES_SNAP_COUNTS_(year: str):
     return f"https://stathead.com/football/player-game-finder.cgi?request=1&order_by=age_on_day&timeframe=seasons&year_min={year}&year_max={year}&comp_type=E&ccomp%5B1%5D=gt&cstat%5B1%5D=snaps_offense"
 
 """
 Refactored URLs with stats filters
 """
 def NFL_PLAYER_GAMES_PASSING(year: str):
-    return f"https://stathead.com/football/player-game-finder.cgi?request=1&order_by=age_on_day&timeframe=seasons&year_min={year}&year_max={year}&comp_type=E&ccomp%5B8%5D=gt&cval%5B8%5D=1&cstat%5B8%5D=pass_att&ccomp%5B9%5D=gt&cstat%5B9%5D=rush_att&ccomp%5B11%5D=gt&cstat%5B11%5D=two_pt_md&ccomp%5B12%5D=gt&cstat%5B12%5D=fumbles&ccomp%5B13%5D=gt&cstat%5B13%5D=pass_target_yds&ccomp%5B14%5D=gt&cstat%5B14%5D=pass_batted_passes&ccomp%5B15%5D=gt&cstat%5B15%5D=pocket_time&ccomp%5B16%5D=gt&cstat%5B16%5D=pass_rpo"
+    """
+    Filters: >=1 pass attempt
+    """
+    return f"https://stathead.com/football/player-game-finder.cgi?request=1&order_by_asc=1&order_by=name_display_csk&timeframe=seasons&year_min={year}&year_max={year}&ccomp%5B2%5D=gt&cstat%5B2%5D=rush_att&ccomp%5B3%5D=gt&cstat%5B3%5D=all_td&ccomp%5B4%5D=gt&cstat%5B4%5D=fumbles&ccomp%5B5%5D=gt&cval%5B5%5D=1&cstat%5B5%5D=pass_att"
+
+def NFL_PLAYER_GAMES_RUSHING(year: str):
+    """
+    Filters: >= 1 rush attempt
+    """
+    return f"https://stathead.com/football/player-game-finder.cgi?request=1&order_by_asc=1&order_by=name_display_csk&timeframe=seasons&year_min={year}&year_max={year}&ccomp%5B1%5D=gt&cval%5B1%5D=1&cstat%5B1%5D=rush_att&ccomp%5B2%5D=gt&cstat%5B2%5D=targets&ccomp%5B3%5D=gt&cstat%5B3%5D=all_td&ccomp%5B4%5D=gt&cstat%5B4%5D=kick_ret&ccomp%5B5%5D=gt&cstat%5B5%5D=punt_ret&ccomp%5B6%5D=gt&cstat%5B6%5D=fumbles&ccomp%5B7%5D=gt&cstat%5B7%5D=touches"
+
+def NFL_PLAYER_GAMES_RECEIVING(year: str):
+    """
+    Filters: >= 1 target
+    """
+    return f"https://stathead.com/football/player-game-finder.cgi?request=1&order_by_asc=1&order_by=name_display_csk&timeframe=seasons&year_min={year}&year_max={year}&ccomp%5B2%5D=gt&cval%5B2%5D=1&cstat%5B2%5D=targets&ccomp%5B3%5D=gt&cstat%5B3%5D=all_td&ccomp%5B4%5D=gt&cstat%5B4%5D=kick_ret&ccomp%5B5%5D=gt&cstat%5B5%5D=punt_ret&ccomp%5B6%5D=gt&cstat%5B6%5D=fumbles&ccomp%5B7%5D=gt&cstat%5B7%5D=touches"
+
+def NFL_PLAYER_GAMES_PASSING_ADV(year: str):
+    """
+    Filters: >= 1 pass attempt
+    """
+    return f"https://stathead.com/football/player-game-finder.cgi?request=1&order_by_asc=1&order_by=name_display_csk&timeframe=seasons&year_min={year}&year_max={year}&ccomp%5B1%5D=gt&cstat%5B1%5D=pass_target_yds&ccomp%5B2%5D=gt&cval%5B2%5D=1&cstat%5B2%5D=pass_att&ccomp%5B3%5D=gt&cstat%5B3%5D=pass_batted_passes&ccomp%5B4%5D=gt&cstat%5B4%5D=pocket_time&ccomp%5B5%5D=gt&cstat%5B5%5D=pass_rpo"
+
+def NFL_PLAYER_GAMES_RECEIVING_RUSHING_ADV(year: str):
+    """
+    Filters: >= 1 touch
+    """
+    return f"https://stathead.com/football/player-game-finder.cgi?request=1&order_by_asc=1&order_by=name_display_csk&timeframe=seasons&year_min={year}&year_max={year}&ccomp%5B1%5D=gt&cstat%5B1%5D=rec_air_yds&ccomp%5B2%5D=gt&cstat%5B2%5D=rush_yds_before_contact&ccomp%5B3%5D=gt&cval%5B3%5D=1&cstat%5B3%5D=touches"
+
+def NFL_PLAYER_GAMES_SNAP_COUNTS(year: str):
+    return f"https://stathead.com/football/player-game-finder.cgi?request=1&order_by_asc=1&order_by=name_display_csk&timeframe=seasons&year_min={year}&year_max={year}&ccomp%5B4%5D=gt&cstat%5B4%5D=snaps_offense"
+
+def NFL_PLAYER_GAMES_DEFENSE(year: str):
+    """
+    Filters: 0 pass att, 0 rush att, 0 targets
+    """
+    return f"https://stathead.com/football/player-game-finder.cgi?request=1&order_by_asc=1&order_by=name_display_csk&timeframe=seasons&year_min={year}&year_max={year}&ccomp%5B1%5D=gt&cstat%5B1%5D=sacks&ccomp%5B2%5D=gt&cstat%5B2%5D=def_int&ccomp%5B3%5D=gt&cstat%5B3%5D=fumbles&ccomp%5B4%5D=gt&cstat%5B4%5D=punt&ccomp%5B5%5D=eq&cval%5B5%5D=0&cstat%5B5%5D=pass_att&ccomp%5B7%5D=eq&cval%5B7%5D=0&cstat%5B7%5D=rush_att&ccomp%5B8%5D=eq&cval%5B8%5D=0&cstat%5B8%5D=targets"
+
+def NFL_PLAYER_GAMES_DEFENSE_ADV(year: str):
+    """
+    Filters: 0 pass att, 0 rush att, 0 targets
+    """
+    return f"https://stathead.com/football/player-game-finder.cgi?request=1&order_by_asc=1&order_by=name_display_csk&timeframe=seasons&year_min={year}&year_max={year}&ccomp%5B5%5D=eq&cval%5B5%5D=0&cstat%5B5%5D=pass_att&ccomp%5B6%5D=eq&cval%5B6%5D=0&cstat%5B6%5D=rush_att&ccomp%5B7%5D=eq&cval%5B7%5D=0&cstat%5B7%5D=targets&ccomp%5B8%5D=gt&cstat%5B8%5D=def_targets"
+
+def NFL_PLAYER_GAMES_KICKING_XP(year: str):
+    """
+    Filters: >=1 XPA
+    """
+    return f"https://stathead.com/football/player-game-finder.cgi?request=1&order_by_asc=1&order_by=name_display_csk&timeframe=seasons&year_min={year}&year_max={year}&ccomp%5B2%5D=gt&cstat%5B2%5D=punt&ccomp%5B3%5D=gt&cstat%5B3%5D=rush_att&ccomp%5B4%5D=gt&cstat%5B4%5D=pass_cmp&ccomp%5B5%5D=gt&cstat%5B5%5D=targets&ccomp%5B6%5D=gt&cstat%5B6%5D=draftkings_points&ccomp%5B7%5D=gt&cval%5B7%5D=1&cstat%5B7%5D=xpa"
+
+def NFL_PLAYER_GAMES_KICKING_FG(year: str):
+    """
+    Filters: >=1 FGA
+    """
+    return f"https://stathead.com/football/player-game-finder.cgi?request=1&order_by_asc=1&order_by=name_display_csk&timeframe=seasons&year_min={year}&year_max={year}&ccomp%5B1%5D=gt&cstat%5B1%5D=punt&ccomp%5B2%5D=gt&cstat%5B2%5D=rush_att&ccomp%5B3%5D=gt&cstat%5B3%5D=pass_cmp&ccomp%5B4%5D=gt&cstat%5B4%5D=targets&ccomp%5B5%5D=gt&cstat%5B5%5D=draftkings_points&ccomp%5B7%5D=gt&cval%5B7%5D=1&cstat%5B7%5D=fga"
+
+def NFL_PLAYER_GAMES_DUMMY(year: str):
+    return f""

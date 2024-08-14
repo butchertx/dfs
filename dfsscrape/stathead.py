@@ -19,7 +19,16 @@ from dfsutil.timer import Timer
 TIMER = Timer()
 
 URL_FUNCS = [
-    urls.NFL_PLAYER_GAMES_PASSING
+    urls.NFL_PLAYER_GAMES_PASSING,
+    urls.NFL_PLAYER_GAMES_RUSHING,
+    urls.NFL_PLAYER_GAMES_RECEIVING,
+    urls.NFL_PLAYER_GAMES_PASSING_ADV,
+    urls.NFL_PLAYER_GAMES_RECEIVING_RUSHING_ADV,
+    urls.NFL_PLAYER_GAMES_SNAP_COUNTS,
+    urls.NFL_PLAYER_GAMES_DEFENSE,
+    urls.NFL_PLAYER_GAMES_DEFENSE_ADV,
+    urls.NFL_PLAYER_GAMES_KICKING_XP,
+    urls.NFL_PLAYER_GAMES_KICKING_FG
 ]
 
 # URL = urls.NCAA_MM_FIRST4_85_TO_24
@@ -137,11 +146,11 @@ def read_and_output_single_query(url_func, year: str, replace=False):
             
 def read_and_output_all(years: List[str], replace=False):
     for url_func, year in product(URL_FUNCS, years):
-        read_and_output_single_query(url_func, year, replace=False)
+        read_and_output_single_query(url_func, year, replace=replace)
 
 if __name__ == '__main__':
 
     years = [str(val) for val in range(2005, 2024)]
-    read_and_output_single_query(urls.NFL_PLAYER_GAMES_PASSING, '2016')
-    # read_and_output_all(years)
+    # read_and_output_single_query(urls.NFL_PLAYER_GAMES_PASSING, '2016')
+    read_and_output_all(years, replace=True)
                 
