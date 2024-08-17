@@ -49,6 +49,11 @@ def NFL_PLAYER_GAMES_SNAP_COUNTS_(year: str):
 """
 Refactored URLs with stats filters
 """
+def NFL_PLAYER_GAMES_FANTASY(year: str):
+    """
+    """
+    return f"https://stathead.com/football/player-game-finder.cgi?request=1&timeframe=seasons&year_min={year}&year_max={year}"
+    
 def NFL_PLAYER_GAMES_PASSING(year: str):
     """
     Filters: >=1 pass attempt

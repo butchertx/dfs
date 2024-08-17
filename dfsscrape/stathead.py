@@ -18,7 +18,8 @@ from dfsutil.timer import Timer
 
 TIMER = Timer()
 
-URL_FUNCS = [
+URL_FUNCS = [urls.NFL_PLAYER_GAMES_FANTASY]
+[
     urls.NFL_PLAYER_GAMES_PASSING,
     urls.NFL_PLAYER_GAMES_RUSHING,
     urls.NFL_PLAYER_GAMES_RECEIVING,
@@ -67,7 +68,14 @@ def read_stathead_pages(url: str):
     chrome_options = Options()
     chromedata = os.path.join(pathlib.Path(__file__).parent.absolute(), 'chrome-data')
     chrome_options.add_argument('--user-data-dir=' + chromedata)
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+    
+    # get path to chromedriver
+    chrome_install = ChromeDriverManager().install()
+    folder = os.path.dirname(chrome_install)
+    chromedriver_path = os.path.join(folder, "chromedriver.exe")
+
+    # get driver
+    driver = webdriver.Chrome(service=Service(chromedriver_path), options=chrome_options)
     
     
     page_table_list = []
