@@ -113,3 +113,6 @@ def NFL_PLAYER_GAMES_KICKING_FG(year: str):
 
 def NFL_PLAYER_GAMES_DUMMY(year: str):
     return f""
+
+def NFL_TEAM_GAMES(year: str):
+    return f"https://stathead.com/football/team-game-finder.cgi?request=1&order_by=team_name_abbr&timeframe=seasons&year_min={year}&year_max={year}&ccomp%5B1%5D=gt&cval%5B1%5D=0&cstat%5B1%5D=points&ccomp%5B2%5D=gt&cval%5B2%5D=0&cstat%5B2%5D=tot_yds&ccomp%5B3%5D=gt&cval%5B3%5D=0&cstat%5B3%5D=penalties&ccomp%5B4%5D=gt&cval%5B4%5D=0&cstat%5B4%5D=first_down&ccomp%5B5%5D=gt&cval%5B5%5D=0&cstat%5B5%5D=over_under"
