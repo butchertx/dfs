@@ -75,7 +75,7 @@ class ProjectionModel:
     """
     PLAYER_ID_COLUMNS = ['name_display', 'week_num', 'team_name_abbr', 'pos_game']
     TEAM_ID_COLUMNS = ['week_num', 'date', 'team_name_abbr', 'game_location', 'opp_name_abbr']
-    FANTASY_COLUMNS = ['drafkings_points']
+    FANTASY_COLUMNS = ['draftkings_points']
     SCORING_COLUMNS = [
         'rush_att', 'rush_yds_per_att', 'rush_td', 'rec', 'rec_yds_per_rec', 'rec_td', 'two_pt_md',
         'pass_cmp', 'pass_yds_per_cmp', 'pass_td', 'pass_int', 'fumbles', 'fumbles_rec_td', 'all_td' 
@@ -93,11 +93,11 @@ class ProjectionModel:
         'time_of_poss', 'tot_yds', 'vegas_line', 'yds_per_play_defense', 'yds_per_play_offense'
     ]
     
-    def __init__(self, season: int, week: int):
+    def __init__(self, season: int, week: int, output_data: bool = False):
         self.season = season
         self.week = week
         self.get_data()
-        self.combine_and_filter_data()
+        self.combine_and_filter_data(output_data)
     
     def get_data(self):
         self.passing_data = gd.get_passing_data(self.season)
@@ -124,7 +124,7 @@ class ProjectionModel:
                 print(f'Table: {attr_name}')
                 exit(1)
         
-    def combine_and_filter_data(self):
+    def combine_and_filter_data(self, output_data=False):
         player_data_columns = self.FANTASY_COLUMNS + self.SCORING_COLUMNS + self.PLAYER_STAT_COLUMNS
         all_team_columns = self.TEAM_ID_COLUMNS + self.TEAM_STAT_COLUMNS
         
@@ -133,8 +133,9 @@ class ProjectionModel:
         for attr_name in self.player_data_attrs:
             # if len(player_data_columns_remaining) > 0:
             column_subset = self.PLAYER_ID_COLUMNS + player_data_columns
-            current_attr = getattr(self, attr_name)
-            current_slice = current_attr[[col for col in column_subset if col in current_attr.columns]]
+            current_attr = getattr(self, attr_name).copy()
+            attr_columns = [str(col) for col in current_attr.columns.values]
+            current_slice = current_attr[[col for col in column_subset if col in attr_columns]]
             player_dfs.append(current_slice)
             # player_data_columns_remaining = [col_name for col_name in player_data_columns_remaining if col_name not in current_slice]
         player_data_combined = player_dfs[0]
@@ -147,8 +148,9 @@ class ProjectionModel:
         data_columns = [col for col in player_data_combined if col not in self.PLAYER_ID_COLUMNS]
         player_data_combined = player_data_combined.loc[player_data_combined[data_columns].dropna(how='all').index]
         team_cols = [col for col in all_team_columns if col not in player_data_combined.columns]
-        team_data = player_data_combined.merge(self.team_games_data[self.TEAM_ID_COLUMNS + team_cols], on=['week_num', 'team_name_abbr'], how='left')
-        team_data.to_csv('player_data.csv')
+        self.player_game_data = player_data_combined.merge(self.team_games_data[self.TEAM_ID_COLUMNS + team_cols], on=['week_num', 'team_name_abbr'], how='left')
+        if output_data:
+            self.player_game_data.to_csv('player_data.csv')
     
     def list_unaccounted_columns(self):
         col_list = []
@@ -164,5 +166,5 @@ class ProjectionModel:
         
 
 if __name__ ==  "__main__":
-    projector = ProjectionModel(2022, 10)
+    projector = ProjectionModel(2022, 10, output_data=True)
     print(projector.list_unaccounted_columns())
