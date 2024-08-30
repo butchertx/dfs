@@ -12,29 +12,6 @@ import pandas as pd
 from dfsmc.simulate import games
 from dfsscrape import get_data as gd
 from dfsutil import constants
-
-class ResampleProjector:
-    
-    """
-    Make projections for players in a single week.
-    Use a ResampleSimulator to sample from previous weeks
-    in the same season.
-    """
-    
-    def __init__(self, season: int, week: int):
-        self.season = season
-        self.week = week
-        self.simulator = games.ResampleSimulator()
-        
-    def generate_projections(self):
-        """
-        Realistically, we don't need to do this stochastically.
-        We can just compute all the values deterministically from the available data.
-        """
-        # resampled = self.simulator.generate_multiple(num_samples=100, season=self.season, week_num=self.week)
-        resampled = self.simulator.get_games_data(self.season, self.week)
-        grouped = resampled.groupby(['player_name', 'pos', 'team'])['fpts_dk'].agg(['median', 'mean', 'std', 'min', 'max'])
-        return grouped
     
 class ProjectionModel:
     
@@ -85,7 +62,7 @@ class ProjectionModel:
         'pass_play_action', 'pass_poor_throw_pct', 'pass_pressured_pct', 'pass_rpo', 'pass_sacked', 'pass_tgt_yds_per_att',
         'pocket_time', 'touches', 'catch_pct', 'targets',
         'rec_adot', 'rec_air_yds_per_rec', 'rec_drop_pct', 'rec_yac_per_rec', 'rec_yds_per_tgt',
-        'rush_scrambles_yds_per_att', 'rush_yds_bc_per_rush',
+        'rush_scrambles_yds_per_att', 'rush_yds_bc_per_rush'
     ]
     TEAM_STAT_COLUMNS = [
         'cover', 'duration', 'game_day_of_week', 'game_num', 'game_result', 'ou_result', 'over_under',
@@ -98,6 +75,16 @@ class ProjectionModel:
         self.week = week
         self.get_data()
         self.combine_and_filter_data(output_data)
+        
+    def get_projections(self, players: pd.Series = None):
+        """
+        Should return a dataframe for player projections with columns: PLAYER_ID_COLUMNS + FANTASY_COLUMNS
+        These represent MEAN outcomes: along with the assumption of a Gamma distribution and covariance,
+        the full probability distribution should be constructible
+        
+        (Eventually) Should also return a (sparse) covariance matrix
+        """
+        raise NotImplementedError('Projections are not implemented!')
     
     def get_data(self):
         self.passing_data = gd.get_passing_data(self.season)
@@ -144,6 +131,7 @@ class ProjectionModel:
             player_data_combined = pd.merge(player_data_combined, df, on=common_cols, how='outer')
         # print(list(set(player_data_combined['pos_game'].values)))
         player_data_combined = player_data_combined[player_data_combined['pos_game'].isin(constants.STATHEAD_POSITIONS)]
+        player_data_combined = player_data_combined.drop_duplicates()
         # remove empty rows
         data_columns = [col for col in player_data_combined if col not in self.PLAYER_ID_COLUMNS]
         player_data_combined = player_data_combined.loc[player_data_combined[data_columns].dropna(how='all').index]
@@ -163,6 +151,42 @@ class ProjectionModel:
             col_list.append(col_names)
         unaccounted = sorted(list(set([col_name for col_vals in col_list for col_name in col_vals if col_name not in player_cols_accounted + team_cols_accounted])))
         return unaccounted
+    
+class TrivialProjector(ProjectionModel):
+    
+    """
+    Projections are the player's season cumulative mean
+    """
+    
+    def get_projections(self, players: pd.Series = None):
+        if players is not None:
+            cumulative_df = self.player_game_data.loc[(self.player_game_data['week_num'] < self.week) & self.player_game_data['name_display'].isin(players)]
+        else:
+            cumulative_df = self.player_game_data.loc[(self.player_game_data['week_num'] < self.week)]
+        cumulative_df['mean_dk_points'] = cumulative_df.expanding().mean()
+    
+class ResampleProjector(ProjectionModel):
+    
+    """
+    Make projections for players in a single week.
+    Use a ResampleSimulator to sample from previous weeks
+    in the same season.
+    """
+    
+    def __init__(self, season: int, week: int):
+        self.season = season
+        self.week = week
+        self.simulator = games.ResampleSimulator()
+        
+    def get_projections(self):
+        """
+        Realistically, we don't need to do this stochastically.
+        We can just compute all the values deterministically from the available data.
+        """
+        # resampled = self.simulator.generate_multiple(num_samples=100, season=self.season, week_num=self.week)
+        resampled = self.simulator.get_games_data(self.season, self.week)
+        grouped = resampled.groupby(['player_name', 'pos', 'team'])['fpts_dk'].agg(['median', 'mean', 'std', 'min', 'max'])
+        return grouped
         
 
 if __name__ ==  "__main__":

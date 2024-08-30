@@ -2,4 +2,4 @@
 SKILL_POSITIONS = ['QB', 'RB', 'WR', 'TE']
 CLASSIC_POSITIONS = ['QB', 'RB', 'WR', 'TE', 'DST']
 ALL_POSITIONS = ['QB', 'RB', 'WR', 'TE', 'K', 'DST']
-STATHEAD_POSITIONS = ['QB', 'RB', 'WR', 'TE', 'TE/QB']
+STATHEAD_POSITIONS = ['QB', 'RB', 'WR', 'TE', 'TE/QB', 'K']
