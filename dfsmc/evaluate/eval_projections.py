@@ -46,7 +46,7 @@ def get_projection_residuals(projector: projection.ResampleProjector):
     on_cols = ['player_name', 'pos', 'team']
     combined = pd.merge(projections[on_cols + ['mean']].rename(columns={'mean': 'fpts_dk_predicted'}), results[on_cols + ['fpts_dk']], on=on_cols, how='inner').dropna()
     return combined[['player_name', 'pos', 'team', 'fpts_dk_predicted', 'fpts_dk']].copy()
-        
+
 
 if __name__ == "__main__":
     
