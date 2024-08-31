@@ -1,5 +1,7 @@
 import pathlib, os
 
+DFS_CONFIG_INI_2024 = pathlib.Path(__file__).parent.resolve() / 'ini' / 'database_2024.ini'
+
 class DBConfig:
 
     _INI: pathlib.Path  # database .ini file
@@ -41,10 +43,10 @@ class DFSdbConfig(DBConfig):
 class defaultDFSConfig(DFSdbConfig):
 
     def __init__(self):
-        inifile = pathlib.Path(__file__).parent.resolve() / 'database_test_2022.ini'
+        inifile = pathlib.Path(__file__).parent.resolve() / 'database_test_2024.ini'
         super().__init__(inifile)
         thisfile = pathlib.Path(__file__).parent.resolve()
-        self._YEAR = '2022'
+        self._YEAR = '2024'
         self._DATA_PATH = pathlib.Path(os.path.join(thisfile, 'sample_data'))
         self._DK_PATH = pathlib.Path(os.path.join(thisfile, 'sample_data'))
         self._REPO_DATA_PATH = pathlib.Path(os.path.join(thisfile, 'sample_data'))

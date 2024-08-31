@@ -37,13 +37,11 @@ class ContestDataNames:
 
     def __init__(
         self,
-        dk_path: pathlib.Path = configure_db.defaultDFSConfig().DK_PATH,
-        data_path: pathlib.Path = configure_db.defaultDFSConfig().DATA_PATH,
-        repo_path: pathlib.Path = configure_db.defaultDFSConfig().REPO_DATA_PATH
+        db_config: configure_db.DFSdbConfig
     ):
-        self._dk_path = dk_path
-        self._fpros_path = data_path
-        self._player_game_path = repo_path
+        self._dk_path = db_config.DK_PATH
+        self._fpros_path = db_config.DATA_PATH
+        self._player_game_path = db_config.REPO_DATA_PATH
 
     @property
     def dk_path(self):

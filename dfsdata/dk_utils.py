@@ -3,11 +3,12 @@ import pandas as pd
 from typing import List
 import pathlib
 
-WEEK_ONE_STARTS = {'2020': 1599609600, '2021': 1630994400, '2022': 1662444000, '2023': 1693875600}
+WEEK_ONE_STARTS = {'2020': 1599609600, '2021': 1630994400, '2022': 1662444000, '2023': 1693875600, '2024': 1725343200}
 # Wed Sept 9 2020 at 12am
 # Tue Sept 7 2021 at 1am
 # Tue Sept 6 2022 at 1am
 # Tue Sept 5 2023 at 1am
+# Tue Sept 3 2024 at 1am
 
 TEAM_NAME_FFA_DICT = {
     'LVR': 'LV',

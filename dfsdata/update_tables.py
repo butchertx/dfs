@@ -2,12 +2,10 @@ import json
 import dateutil.parser
 
 import pandas as pd
-
-from interface import DFSDBInterface
-import configure_db
-import path_name
-import dk_utils as dk
 from fuzzywuzzy import process
+
+from dfsdata.interface import DFSDBInterface
+from dfsdata import configure_db, path_name, dk_utils as dk
 
 
 class DataWrangler:
@@ -90,6 +88,11 @@ class DataWrangler:
             self.db.run_format_insert(contest_command, data_to_insert)
 
     def insert_contests_2023(self):
+        print('Inserting contests...')
+        contest_data = self.read_contest_data()
+        self.insert_contest_data(contest_data)
+    
+    def insert_contests_2024(self):
         print('Inserting contests...')
         contest_data = self.read_contest_data()
         self.insert_contest_data(contest_data)

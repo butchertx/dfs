@@ -51,7 +51,10 @@ def drop_dfs_tables(config_in: configure_db.DFSdbConfig = configure_db.defaultDF
 
 
 def clean_dfs_tables(config_in: configure_db.DFSdbConfig = configure_db.defaultDFSConfig()):
-    drop_dfs_tables(config_in)
+    try:
+        drop_dfs_tables(config_in)
+    except:
+        pass
     create_dfs_tables(config_in)
 
 
