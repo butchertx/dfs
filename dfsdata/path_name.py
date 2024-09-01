@@ -30,6 +30,7 @@ class TeamGameNames:
 
 class ContestDataNames:
 
+    _year: str
     _dk_path: pathlib.Path
     _fpros_path: pathlib.Path
     _projections_path: pathlib.Path
@@ -39,6 +40,7 @@ class ContestDataNames:
         self,
         db_config: configure_db.DFSdbConfig
     ):
+        self._year = db_config.YEAR
         self._dk_path = db_config.DK_PATH
         self._fpros_path = db_config.DATA_PATH
         self._player_game_path = db_config.REPO_DATA_PATH
@@ -56,7 +58,7 @@ class ContestDataNames:
         return self._player_game_path
 
     def contest_table_files(self) -> Generator[pathlib.Path, None, None]:
-        return self._dk_path.glob('contest_table_2023-*.csv')
+        return self._dk_path.glob(f'contest_table_{self._year}-*.csv')
 
     def contest_details_files(self) -> Generator[pathlib.Path, None, None]:
         return self._dk_path.glob('contest_details-*.json')

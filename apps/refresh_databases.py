@@ -1,14 +1,15 @@
 from dfsdata.create_db import clean_dfs_tables
-from dfsdata import update_tables
+from dfsdata.update_tables.update_dfs_tables import DataWrangler
 from dfsdata.interface import DFSDBInterface
-from dfsdata.configure_db import DFSdbConfig, DFS_CONFIG_INI_2024, defaultNFLConfig
+from dfsdata.configure_db import DFS2024Config
 
 if __name__ == "__main__":
     # DFS Data
-    dfs_config = DFSdbConfig(DFS_CONFIG_INI_2024)
+    dfs_config = DFS2024Config()
     clean_dfs_tables(dfs_config)
-    wrangler = update_tables.DataWrangler(DFSDBInterface(dfs_config))
+    wrangler = DataWrangler(DFSDBInterface(dfs_config))
     wrangler.insert_contests_2024()
+    wrangler.insert_draftables()
     
     # NFL Data
     # clean_nfl_tables()

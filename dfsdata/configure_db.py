@@ -1,5 +1,7 @@
 import pathlib, os
 
+from dfsscrape.config import DATA_DUMP_2024
+
 DFS_CONFIG_INI_2024 = pathlib.Path(__file__).parent.resolve() / 'ini' / 'database_2024.ini'
 
 class DBConfig:
@@ -39,6 +41,17 @@ class DFSdbConfig(DBConfig):
     @property
     def DK_PATH(self):
         return self._DK_PATH
+    
+class DFS2024Config(DFSdbConfig):
+
+    def __init__(self):
+        inifile = DFS_CONFIG_INI_2024
+        super().__init__(inifile)
+        thisfile = pathlib.Path(__file__).parent.resolve()
+        self._YEAR = '2024'
+        self._DK_PATH = DATA_DUMP_2024
+        self._DATA_PATH = None
+        self._REPO_DATA_PATH = None
     
 class defaultDFSConfig(DFSdbConfig):
 
