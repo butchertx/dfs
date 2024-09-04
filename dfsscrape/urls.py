@@ -1,3 +1,14 @@
+import pathlib
+from dfsscrape.config import NFL_SEASON_DATA
+
+
+def filename_from_func(func, year: str, week = None):
+    func_name = func.__name__.split('.')[-1].lower()
+    parent_dir = NFL_SEASON_DATA
+    if week is not None:
+        return parent_dir / f'{func_name}_{year}_week{str(week)}.csv'
+    else:
+        return parent_dir / f'{func_name}_{year}.csv'
 
 """
 NCAAMBB TOURNEY
@@ -116,3 +127,13 @@ def NFL_PLAYER_GAMES_DUMMY(year: str):
 
 def NFL_TEAM_GAMES(year: str):
     return f"https://stathead.com/football/team-game-finder.cgi?request=1&order_by=team_name_abbr&timeframe=seasons&year_min={year}&year_max={year}&ccomp%5B1%5D=gt&cval%5B1%5D=0&cstat%5B1%5D=points&ccomp%5B2%5D=gt&cval%5B2%5D=0&cstat%5B2%5D=tot_yds&ccomp%5B3%5D=gt&cval%5B3%5D=0&cstat%5B3%5D=penalties&ccomp%5B4%5D=gt&cval%5B4%5D=0&cstat%5B4%5D=first_down&ccomp%5B5%5D=gt&cval%5B5%5D=0&cstat%5B5%5D=over_under"
+
+##################################################################
+# NFL.com URLs
+##################################################################
+
+def NFL_COM_NFL_INJURY_REPORTS(year: str, week: int, postseason=False):
+    if postseason:
+        return f"https://nfl.com/injuries/league/{year}/POST{str(week)}"
+    else:
+        return f"https://nfl.com/injuries/league/{year}/REG{str(week)}"

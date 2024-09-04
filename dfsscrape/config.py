@@ -1,10 +1,14 @@
 import pathlib
 
+NFL_SEASON_DATA = pathlib.Path('D:/Data/DFS/NFL_SEASON_DATA/')
 # DATA_DUMP_2022 = 'F:/DFS/NFL_DFS/2022/draftkings_data/'
 # DATA_DUMP_2023 = pathlib.Path('D:/Data/DFS/2023/draftkings_data/')
 # CURRENT_YEAR = 2023
 DATA_DUMP_2024 = pathlib.Path('D:/Data/DFS/2024/draftkings_data/')
 CURRENT_YEAR = 2024
+
+class NoDataException(Exception):
+    pass
 
 class ScrapingConfig:
 
