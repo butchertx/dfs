@@ -54,7 +54,7 @@ def read_fantasy_pros_projections(files: List[pathlib.Path]):
     players_fp_list = []
     for file in [str(f) for f in files]:
         temp_df = pd.read_csv(file).rename(columns={'PLAYER NAME': 'Player',
-                                                    'TEAM': 'Team', 'PROJ. FPTS': 'projection_ppr'})
+                                                    'TEAM': 'Team', 'PROJ. FPTS': 'fpros_projection'})
         temp_df['Player'] = [player.strip() for player in temp_df['Player']]
         temp_df['Pos'] = [file.split('_')[-2]]*len(temp_df)
         temp_df['week'] = [int(file.split('_')[-3])]*len(temp_df)

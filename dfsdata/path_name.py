@@ -67,7 +67,7 @@ class ContestDataNames:
         return self._dk_path.glob('draft_group_info-*.json')
 
     def fpros_files(self) -> Generator[pathlib.Path, None, None]:
-        return (self._fpros_path / 'projections').glob('FantasyPros*.csv')
+        return (self._fpros_path).glob('FantasyPros*.csv')
 
     def projections_files(self):
         return (self._fpros_path / 'projections').glob('projections*.csv')

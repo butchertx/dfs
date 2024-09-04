@@ -1,6 +1,6 @@
 import pathlib, os
 
-from dfsscrape.config import DATA_DUMP_2024
+from dfsscrape.config import DATA_DUMP_2024, NFL_SEASON_DATA
 
 DFS_CONFIG_INI_2024 = pathlib.Path(__file__).parent.resolve() / 'ini' / 'database_2024.ini'
 
@@ -50,7 +50,7 @@ class DFS2024Config(DFSdbConfig):
         thisfile = pathlib.Path(__file__).parent.resolve()
         self._YEAR = '2024'
         self._DK_PATH = DATA_DUMP_2024
-        self._DATA_PATH = None
+        self._DATA_PATH = NFL_SEASON_DATA
         self._REPO_DATA_PATH = None
     
 class defaultDFSConfig(DFSdbConfig):

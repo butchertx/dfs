@@ -1,0 +1,1 @@
+delete from players_dict where player_id = 0

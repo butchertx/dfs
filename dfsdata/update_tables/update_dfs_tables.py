@@ -233,7 +233,7 @@ class DataWrangler:
                         dk_name = player_row['Player'].split()[-1]
                         dk_id = players_dk.loc[players_dk['Player'] == dk_name, 'player_id']
                         if len(dk_id) > 0:
-                            match_id = str(dk_id[0])
+                            match_id = str(dk_id.iloc[0])
                         else:
                             match_id = '0'
                     else:
@@ -274,9 +274,31 @@ class DataWrangler:
         file = self.dk_names.player_game_file(2023)
         player_games = dk.read_player_games(file).drop_duplicates(subset=['Player', 'Pos', 'Team'])[['Player', 'Pos', 'Team']]
         self.match_player_names(player_games)
+        
+    def match_player_names_2024(self):
+        print('Matching player names...')
+
+        # get fantasypros player names
+        fp_files = self.dk_names.fpros_files()
+        players_fp = dk.read_fantasy_pros_projections(list(fp_files)).drop_duplicates(
+            subset=['Player', 'Pos', 'Team'])[['Player', 'Pos', 'Team']]
+        self.match_player_names(players_fp)
+
+        # # ffanalytics player names
+        # ff_files = self.dk_names.ffanalytics_files()
+        # players_ff = dk.read_ffanalytics_projections(list(ff_files)).drop_duplicates(
+        #     subset=['Player', 'Pos', 'Team'])[['Player', 'Pos', 'Team']]
+        # self.match_player_names(players_ff)
+
+        # # stathead player names
+        # file = self.dk_names.player_game_file(2023)
+        # player_games = dk.read_player_games(file).drop_duplicates(subset=['Player', 'Pos', 'Team'])[['Player', 'Pos', 'Team']]
+        # self.match_player_names(player_games)
+        
+        # nfl.com player names
 
     def insert_fpros_projections(self):
-        fp_files = self.dk_names.fantasypros_files()
+        fp_files = self.dk_names.fpros_files()
         players_fp = dk.read_fantasy_pros_projections(list(fp_files))[['Player', 'Pos', 'Team', 'week', 'projection_ppr'
                                                                  ]].rename(columns={'projection_ppr': 'fpros_projection'})
         player_df = self.db.run_command('SELECT * from players_dict').rename(columns={'player_name': 'Player', 'position': 'Pos', 'team': 'Team'})
