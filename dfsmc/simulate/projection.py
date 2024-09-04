@@ -77,7 +77,7 @@ class ProjectionModel:
         self.get_data()
         self.combine_and_filter_data(output_data)
         
-    def get_projections(self, players: pd.Series = None) -> pd.DataFrame:
+    def get_projections(self, players: pd.DataFrame = None) -> pd.DataFrame:
         """
         Should return a dataframe for player projections with columns: PLAYER_ID_COLUMNS + FANTASY_COLUMNS
         These represent MEAN outcomes: along with the assumption of a Gamma distribution and covariance,
@@ -89,12 +89,14 @@ class ProjectionModel:
     
     def get_actuals(self, players: pd.Series = None):
         if players is not None:
-            data = self.player_game_data.loc[self.player_game_data['name_display'].isin(players)].copy()
+            players_included = self.player_game_data.merge(players, on=['name_display', 'week_num'], how='inner')
+            data = self.player_game_data.loc[self.player_game_data['name_display'].isin(players_included['name_display'])].copy()
         else:
             data = self.player_game_data.copy()
-        return data[self.PLAYER_ID_COLUMNS + self.FANTASY_COLUMNS]
+        return data[self.PLAYER_ID_COLUMNS + self.FANTASY_COLUMNS + ['rush_att', 'pass_att', 'targets']]
     
     def apply_stat_thresholds(self):
+        self.player_game_data[['pass_att', 'rush_att', 'targets']] = self.player_game_data[['pass_att', 'rush_att', 'targets']].fillna(0.0)
         self.player_game_data.drop(
                 self.player_game_data[(self.player_game_data['pos_game'] == 'QB') & (self.player_game_data['pass_att'] < 10)].index,
                 inplace=True
@@ -189,15 +191,22 @@ class TrivialProjector(ProjectionModel):
     Projections are the player's season cumulative mean
     """
     
-    def get_projections(self, player_list: pd.Series):
+    def get_projections(self, player_list: pd.DataFrame):
+        """
+        player_list should have name and week as columns, and each row corresponds to a week to project
+        """
         if self.week is None:
             print('Warning! Trivial Projector was not initialized with a week number so it is projecting for all available weeks')
             weekly_results = []
             for week in range(1,19):
                 self.week = week
-                weekly_results.append(self.get_projections(player_list))
+                weekly_results.append(self.get_projections(player_list.loc[player_list['week_num']==week].copy()))
+            self.week = None # reset the week value
             return pd.concat(weekly_results).drop_duplicates().reset_index().drop(columns='index')
-        cumulative_df = self.player_game_data.loc[(self.player_game_data['week_num'] < self.week) & self.player_game_data['name_display'].isin(player_list)].copy()
+        
+        # Get only rows with players that have data for the specified week
+        players_matched = self.player_game_data.merge(player_list, on=['name_display', 'week_num'], how='inner')['name_display']
+        cumulative_df = self.player_game_data.loc[(self.player_game_data['week_num'] < self.week) & self.player_game_data['name_display'].isin(players_matched)].copy()
         means = cumulative_df.groupby(['name_display'])['draftkings_points'].mean().reset_index()
         means = means.merge(self.player_game_data[['name_display', 'team_name_abbr', 'pos_game']].drop_duplicates(), on='name_display')
         means['week_num'] = [self.week]*len(means)
@@ -235,17 +244,11 @@ def get_projections(data_range, projector_obj: Type[ProjectionModel]):
     for year in data_range:
         projector = projector_obj(year, week=None, output_data=True)
         projector.apply_stat_thresholds()
-        projections_temp = projector.get_projections(projector.player_game_data['name_display'].values)
-        actuals_temp = projector.get_actuals()
-        
-        projector.player_game_data['dk_sq'] = projector.player_game_data['draftkings_points']**2
-        print(projector.player_game_data.sort_values(by='dk_sq', ascending=True)[projector.PLAYER_ID_COLUMNS + projector.FANTASY_COLUMNS].head(20))
-        projections_temp['dk_sq'] = projections_temp['draftkings_points']**2
-        print(projections_temp.sort_values(by='dk_sq', ascending=True)[projector.PLAYER_ID_COLUMNS + projector.FANTASY_COLUMNS].head(20))
-        actuals_temp['dk_sq'] = actuals_temp['draftkings_points']**2
-        print(actuals_temp.sort_values(by='dk_sq', ascending=True)[projector.PLAYER_ID_COLUMNS + projector.FANTASY_COLUMNS].head(20))
+        projections_temp = projector.get_projections(projector.player_game_data[['name_display', 'week_num']].copy())
+        actuals_temp = projector.get_actuals(projector.player_game_data[['name_display', 'week_num']].copy())
 
         projections_temp['year'] = [year]*len(projections_temp)
+        projections_temp['week_num'] = projections_temp['week_num'].astype(int)
         projections_temp = projections_temp.rename(columns={'draftkings_points': 'draftkings_points_predicted'})
         actuals_temp['year'] = [year]*len(actuals_temp)
 
