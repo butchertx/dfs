@@ -54,6 +54,7 @@ if __name__ == "__main__":
     GEN_UPLOADS = False
     TO_FILE = True
 
+    # Fill list with idx values corresponding to lineups output by the GEN_FIELD script
     contest_and_lineups = {
         164284870: []
     }
