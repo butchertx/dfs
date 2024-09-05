@@ -53,16 +53,18 @@ class DFS2024Config(DFSdbConfig):
         self._DATA_PATH = NFL_SEASON_DATA
         self._REPO_DATA_PATH = None
     
-class defaultDFSConfig(DFSdbConfig):
+defaultDFSConfig = DFS2024Config()
 
-    def __init__(self):
-        inifile = pathlib.Path(__file__).parent.resolve() / 'database_test_2024.ini'
-        super().__init__(inifile)
-        thisfile = pathlib.Path(__file__).parent.resolve()
-        self._YEAR = '2024'
-        self._DATA_PATH = pathlib.Path(os.path.join(thisfile, 'sample_data'))
-        self._DK_PATH = pathlib.Path(os.path.join(thisfile, 'sample_data'))
-        self._REPO_DATA_PATH = pathlib.Path(os.path.join(thisfile, 'sample_data'))
+# class defaultDFSConfig(DFSdbConfig):
+
+#     def __init__(self):
+#         inifile = pathlib.Path(__file__).parent.resolve() / 'database_test_2024.ini'
+#         super().__init__(inifile)
+#         thisfile = pathlib.Path(__file__).parent.resolve()
+#         self._YEAR = '2024'
+#         self._DATA_PATH = pathlib.Path(os.path.join(thisfile, 'sample_data'))
+#         self._DK_PATH = pathlib.Path(os.path.join(thisfile, 'sample_data'))
+#         self._REPO_DATA_PATH = pathlib.Path(os.path.join(thisfile, 'sample_data'))
 
 
 class NFLdbConfig(DBConfig):
