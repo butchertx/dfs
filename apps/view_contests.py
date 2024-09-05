@@ -9,3 +9,5 @@ if __name__ == "__main__":
 
     # get all contests using the same draft group
     contest_data = contest.get_contests_with_same_draft_group()
+    
+    print(contest_data)

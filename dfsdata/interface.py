@@ -13,7 +13,7 @@ class DFSDBInterface:
     db_args: Dict
     db_config: db_config_module.DBConfig
 
-    def __init__(self, ini: db_config_module.DBConfig = db_config_module.defaultDFSConfig()):
+    def __init__(self, ini: db_config_module.DBConfig = db_config_module.defaultDFSConfig):
         self.db_args = self.config(ini.INI)
         self.db_config = ini
         self.conn = psycopg2.connect(**self.db_args)

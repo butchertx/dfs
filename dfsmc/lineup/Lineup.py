@@ -174,6 +174,7 @@ class DraftGroup:
         self.data['opponent'] = self.data['team_abbreviation']
         self.data.loc[self.data['team_abbreviation'] == teams[0], 'opponent'] = teams[1]
         self.data.loc[self.data['team_abbreviation'] == teams[1], 'opponent'] = teams[0]
+        self.data['roster_slot'] = self.data['roster_slot_id'].astype(str).map(ROSTER_DICT)
         self.player_list = self._generate_players()
 
     def _get_data(self, query_type: str, id: int, db_interface: DFSDBInterface):
@@ -218,7 +219,8 @@ class DraftGroup:
 
     def populate_points_data(self, db_interface: DFSDBInterface):
         for p in self.player_list:
-            p.set_projection_data(int(self.data.loc[0, 'week']), db_interface)
+            p.set_projection_fpros(int(self.data.loc[0, 'week']), db_interface)
+            # p.set_projection_data(int(self.data.loc[0, 'week']), db_interface)
             p.set_points_data(int(self.data.loc[0, 'week']), db_interface)
         mapping_proj = {(p.player_id, p.roster_slot_id): p.fantasy_points_projection for p in self.player_list}
         mapping_var = {(p.player_id, p.roster_slot_id): p.sd_pts ** 2 for p in self.player_list}
@@ -226,6 +228,11 @@ class DraftGroup:
         self.data['projection'] = pd.Series(list(zip(self.data.player_id, self.data.roster_slot_id))).map(mapping_proj)
         self.data['variance'] = pd.Series(list(zip(self.data.player_id, self.data.roster_slot_id))).map(mapping_var)
         self.data['actual'] = pd.Series(list(zip(self.data.player_id, self.data.roster_slot_id))).map(mapping_points)
+        
+    def filter_by_projection(self, threshold: float = 1.0):
+        cpt_filtered = self.data.loc[(self.data['projection'] > 1.5*threshold) & (self.data['roster_slot'] == 'CPT')].dropna()
+        flex_filtered = self.data.loc[(self.data['projection'] > threshold) & (self.data['roster_slot'] == 'FLEX')].dropna()
+        self.data = pd.concat([cpt_filtered, flex_filtered]).reset_index(drop='index')
 
     def populate_covariance(self):
         """
@@ -296,7 +303,6 @@ class randomLineupGenerator:
         self.rng = np.random.Generator(np.random.PCG64())
         self.constraint = constraint
         self.player_data = player_data
-        self.player_data['roster_slot'] = self.player_data['roster_slot_id'].astype(str).map(ROSTER_DICT)
         self.player_data['num_roster_slots'] = self.player_data['roster_slot'].map(self.constraint.roster_counts)
         # self.usage_is_valid = self._usage_valid()
 

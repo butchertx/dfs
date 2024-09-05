@@ -32,7 +32,7 @@ def create_nfl_tables(config_in: configure_db.NFLdbConfig = configure_db.default
     except (Exception, psycopg2.DatabaseError) as error:
         print(error)
         
-def drop_dfs_tables(config_in: configure_db.DFSdbConfig = configure_db.defaultDFSConfig()):
+def drop_dfs_tables(config_in: configure_db.DFSdbConfig = configure_db.defaultDFSConfig):
     try:
         db_interface = DFSDBInterface(config_in)
 
@@ -50,7 +50,7 @@ def drop_dfs_tables(config_in: configure_db.DFSdbConfig = configure_db.defaultDF
         print(error)
 
 
-def clean_dfs_tables(config_in: configure_db.DFSdbConfig = configure_db.defaultDFSConfig()):
+def clean_dfs_tables(config_in: configure_db.DFSdbConfig = configure_db.defaultDFSConfig):
     try:
         drop_dfs_tables(config_in)
     except:
@@ -58,7 +58,7 @@ def clean_dfs_tables(config_in: configure_db.DFSdbConfig = configure_db.defaultD
     create_dfs_tables(config_in)
 
 
-def create_dfs_tables(config_in: configure_db.DFSdbConfig = configure_db.defaultDFSConfig()):
+def create_dfs_tables(config_in: configure_db.DFSdbConfig = configure_db.defaultDFSConfig):
     """ create tables in the PostgreSQL database"""
     commands = [
         """

@@ -2,10 +2,12 @@ import pandas as pd
 import numpy as np
 import pathlib
 from typing import List
+import os
 
 from dfsdata.interface import DFSDBInterface
 from dfsmc.projection import covariance
 
+from dfsscrape.config import DATA_DUMP_2024
 
 class Contest:
 
@@ -46,7 +48,9 @@ class Payout:
 
 
 def field_filename(week: int, contest_id: int):
-    return pathlib.Path(__file__).parent.parent.parent.resolve() / 'contest_entries' / '2023' / f'Week{week}' / f'lineups_{contest_id}.csv'
+    parent = DATA_DUMP_2024.parent / 'contest_entries' / f'Week{week}'
+    os.makedirs(parent, exist_ok=True)
+    return parent / f'lineups_{contest_id}.csv'
 
 
 class MyString:
@@ -98,7 +102,10 @@ class LineupSet:
         self.player_data = player_data.loc[players_used].copy()
         self.player_data['projection'] = self.player_data['projection'].astype(float)
         # self.player_data['covariance'] = self.player_data['covariance'].astype(float)
-        self.cov = covariance_matrix[np.outer(players_used, players_used)].reshape(sum(players_used), sum(players_used))
+        if covariance_matrix is not None:
+            self.cov = covariance_matrix[np.outer(players_used, players_used)].reshape(sum(players_used), sum(players_used))
+        else:
+            self.cov = None
 
     def lineup_set_overlap_matrix(self, row: np.array = None, subset: bool = False) -> np.ndarray:
         # covariance matrix for entire LineupSet is given by self.lineups @ self.cov @ self.lineups.T
@@ -151,7 +158,8 @@ class LineupSet:
                                          zip(self.player_data['roster_slot'].values, self.player_data['name_id'].values)]
         name_values = self.lineups @ self.player_data['name_slot'].values
 
-        cov_values = self.lineup_set_diagonal_covariance()
+        if self.cov is not None:
+            cov_values = self.lineup_set_diagonal_covariance()
 
         # sort lineup strings to put CPT first
         def sort_lineup_string(lineup):
@@ -161,10 +169,16 @@ class LineupSet:
         f = np.vectorize(sort_lineup_string)
         name_values = f(name_values)
 
-        file_array = np.concatenate((np.reshape(name_values, (-1, 1)), lineup_values, cov_values), axis=1)
-        df = pd.DataFrame(file_array, columns=['lineup'] + value_cols + ['covariance'])
-        df[value_cols + ['covariance']] = df[value_cols + ['covariance']].astype(float)
-        return df.sort_values(by='covariance', ascending=False)
+        if self.cov is not None:
+            file_array = np.concatenate((np.reshape(name_values, (-1, 1)), lineup_values, cov_values), axis=1)
+            df = pd.DataFrame(file_array, columns=['lineup'] + value_cols + ['covariance'])
+            df[value_cols + ['covariance']] = df[value_cols + ['covariance']].astype(float)
+            return df.sort_values(by='covariance', ascending=False)
+        else:
+            file_array = np.concatenate((np.reshape(name_values, (-1, 1)), lineup_values), axis=1)
+            df = pd.DataFrame(file_array, columns=['lineup'] + value_cols)
+            df[value_cols] = df[value_cols].astype(float)
+            return df.sort_values(by='projection', ascending=False)
 
     def to_file(self, outfile: pathlib.Path):
         self.get_lineup_stats().to_csv(outfile)

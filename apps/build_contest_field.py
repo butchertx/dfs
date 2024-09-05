@@ -1,17 +1,14 @@
-import sys
-import os
-sys.path.append('../database/')
 import pathlib
-
-import database.interface as db
-from contest import Contest
-from lineup import Lineup
-from projection import covariance
-from projection import usage
 from typing import List
 
+import dfsdata.interface as db
+from dfsmc.contest import Contest
+from dfsmc.lineup import Lineup
+# from dfsmc.projection import covariance
+# from dfsmc.projection import usage
 
-def build_field(contest_in: Contest, exclude_players: List[int] = None):
+
+def build_field(contest_in: Contest, exclude_players: List[int] = None, projection_threshold: float = 1.0):
     # Get lineup parameters for contest
     constraint = Lineup.LineupConstraint(contest_type='Showdown')
     draft_group = Lineup.DraftGroup(draft_group_id=contest_in.draft_group_id, db_interface=db.DFSDBInterface())
@@ -20,22 +17,23 @@ def build_field(contest_in: Contest, exclude_players: List[int] = None):
 
     # Get player projection data
     draft_group.populate_points_data(db.DFSDBInterface())
+    draft_group.filter_by_projection(projection_threshold)
 
-    # Generate usage projections for this contest
-    usage_predictor = usage.UsagePredictor(usage.UsageModel.SIMPLE, draft_group.data)
-    players = usage_predictor.predict()
+    # # Generate usage projections for this contest
+    # usage_predictor = usage.UsagePredictor(usage.UsageModel.SIMPLE, draft_group.data)
+    # players = usage_predictor.predict()
 
     # Generate all possible lineups
-    generator = Lineup.greedyGenerator(constraint, players, projections_only=True)
+    generator = Lineup.greedyGenerator(constraint, draft_group.data, projections_only=True)
     lineups = generator.generate(verbose=True, limit=None, random=False)
 
-    # Get the covariance matrix
-    cov_group = covariance.DraftGroupCovariance(players)
-    cov_matrix = cov_group.get_covariance()
+    # # Get the covariance matrix
+    # cov_group = covariance.DraftGroupCovariance(players)
+    # cov_matrix = cov_group.get_covariance()
 
     # Build the Field using all valid and viable lineups for this contest
     # We want to do this so we can plot / calculate summary stats and compare to smaller subsets of maximal field
-    return Contest.LineupSet(players, lineups, cov_matrix)
+    return Contest.LineupSet(draft_group.data, lineups)
 
 
 def build_lineup(contest_in: Contest):
@@ -54,10 +52,10 @@ if __name__ == "__main__":
     print("Welcome to the Lineup Builder")
     GEN_FIELD = True
     GEN_UPLOADS = False
-    TO_FILE = False
+    TO_FILE = True
 
     contest_and_lineups = {
-        151210640: []
+        164284870: []
     }
 
     # exclude_players = [
