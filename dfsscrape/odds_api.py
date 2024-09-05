@@ -12,10 +12,11 @@ The free API key gets 500 requests / month. With 2 markets per request that is 2
 import requests
 import json
 import time
+import pathlib
 
 from dfsscrape.config import NFL_SEASON_DATA # path
 
-API_KEY_FILE = '.odds_api_key'
+API_KEY_FILE = pathlib.Path(__file__).parent / '.odds_api_key'
 SPORT = 'americanfootball_nfl'
 REGIONS = 'us'
 MARKETS = 'spreads,totals'
