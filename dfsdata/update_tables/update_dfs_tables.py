@@ -299,8 +299,7 @@ class DataWrangler:
 
     def insert_fpros_projections(self):
         fp_files = self.dk_names.fpros_files()
-        players_fp = dk.read_fantasy_pros_projections(list(fp_files))[['Player', 'Pos', 'Team', 'week', 'projection_ppr'
-                                                                 ]].rename(columns={'projection_ppr': 'fpros_projection'})
+        players_fp = dk.read_fantasy_pros_projections(list(fp_files))[['Player', 'Pos', 'Team', 'week', 'fpros_projection']]
         player_df = self.db.run_command('SELECT * from players_dict').rename(columns={'player_name': 'Player', 'position': 'Pos', 'team': 'Team'})
         points_fp = players_fp.merge(player_df, how='left', on=['Player', 'Pos', 'Team'])[[
             'Player', 'Pos', 'Team', 'player_id', 'week', 'fpros_projection']]

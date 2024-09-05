@@ -211,7 +211,7 @@ ALTER TABLE public.players_dict OWNER TO postgres;
 CREATE TABLE public.projections (
     week integer NOT NULL,
     player_id integer NOT NULL,
-    projection_ppr numeric,
+    fpros_projection numeric,
     sd_pts numeric,
     dropoff numeric,
     floor numeric,

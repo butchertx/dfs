@@ -216,7 +216,7 @@ def create_dfs_tables(config_in: configure_db.DFSdbConfig = configure_db.default
         (
              week           int NOT NULL,
              player_id      int NOT NULL,
-             projection_ppr decimal NULL,
+             fpros_projection decimal NULL,
              sd_pts         decimal NULL,
              dropoff        decimal NULL,
              floor          decimal NULL,
