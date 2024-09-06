@@ -396,12 +396,14 @@ class DataWrangler:
                     updated.append(book.get('last_update', np.nan))
                     spreads.append(results.get('spreads', np.nan))
                     over_unders.append(results.get('totals', np.nan))
-                odds_data['week'].append(dk.get_nfl_week(self.db.db_config._YEAR, starts_at))
-                odds_data['home_team'].append(home_team)
-                odds_data['away_team'].append(away_team)
-                odds_data['spread'].append(np.nanmean(spreads))
-                odds_data['over_under'].append(np.nanmean(over_unders))
-                odds_data['last_updated'].append(sorted(updated)[-1])
+
+                if dateutil.parser.isoparse(sorted(updated)[-1]).timestamp() < starts_at:
+                    odds_data['week'].append(dk.get_nfl_week(self.db.db_config._YEAR, starts_at))
+                    odds_data['home_team'].append(home_team)
+                    odds_data['away_team'].append(away_team)
+                    odds_data['spread'].append(np.nanmean(spreads))
+                    odds_data['over_under'].append(np.nanmean(over_unders))
+                    odds_data['last_updated'].append(sorted(updated)[-1])
         
         json_odds = pd.DataFrame(odds_data)
         

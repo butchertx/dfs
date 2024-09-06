@@ -186,6 +186,10 @@ def main(download_list: bool = False):
                 except AttributeError:
                     comp_json['weather'] = None
                 draft_json['competitions'].append(comp_json)
+            # purge PlayerDraftAlertDetails objects
+            for idx, alert in enumerate(draft_json['draftables']):
+                if len(alert['draft_alerts']) > 0:
+                    draft_json['draftables'][idx]['draft_alerts'] = []
             with open(filepath, 'w') as outfile:
                 json.dump(draft_json, outfile)
 
