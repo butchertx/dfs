@@ -23,6 +23,7 @@ if __name__ == "__main__":
     # injury reports
     # base projections
     wrangler.insert_fpros_projections()
+    wrangler.insert_vegas_data()
     
     # NFL Data
     # clean_nfl_tables()

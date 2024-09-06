@@ -50,13 +50,13 @@ if __name__ == "__main__":
     filename_suffix = None
 
     print("Welcome to the Lineup Builder")
-    GEN_FIELD = True
-    GEN_UPLOADS = False
+    GEN_FIELD = False
+    GEN_UPLOADS = True
     TO_FILE = True
 
     # Fill list with idx values corresponding to lineups output by the GEN_FIELD script
     contest_and_lineups = {
-        164284870: []
+        164284870: [490311, 490318]
     }
 
     # exclude_players = [

@@ -21,7 +21,7 @@ SPORT = 'americanfootball_nfl'
 REGIONS = 'us'
 MARKETS = 'spreads,totals'
 ODDS_FORMAT = 'american'
-DATE_FORMAT = 'unix'
+DATE_FORMAT = 'iso'
 
 class OddsAPIException(Exception):
     pass

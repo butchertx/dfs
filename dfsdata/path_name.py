@@ -74,6 +74,9 @@ class ContestDataNames:
 
     def player_game_file(self, year: int) -> pathlib.Path:
         return self.player_game_path / f'player_games_{str(year)}.csv'
+    
+    def vegas_odds_files(self):
+        return (self._fpros_path).glob('odds-*.json')
 
     @staticmethod
     def filename_to_id(filepath: pathlib.Path) -> int:

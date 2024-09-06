@@ -40,6 +40,7 @@ def drop_dfs_tables(config_in: configure_db.DFSdbConfig = configure_db.defaultDF
             "DROP TABLE IF EXISTS draftables",
             "DROP TABLE IF EXISTS competitions",
             "DROP TABLE IF EXISTS contests",
+            "DROP TABLE IF EXISTS vegas_odds",
             "DROP TABLE IF EXISTS payouts",
             "DROP TABLE IF EXISTS player_game_stats",
             "DROP TABLE IF EXISTS projections"
@@ -91,6 +92,17 @@ def create_dfs_tables(config_in: configure_db.DFSdbConfig = configure_db.default
             away_team_name varchar(255) NOT NULL,
             away_team_abbreviation varchar(255) NOT NULL,
             away_team_city varchar(255) NOT NULL
+        );
+        """,
+        """
+        CREATE TABLE IF NOT EXISTS vegas_odds (
+            week INTEGER,
+            home_team_abbreviation varchar(255) NOT NULL,
+            away_team_abbreviation varchar(255) NOT NULL,
+            spread decimal,
+            over_under decimal,
+            last_updated timestamp,
+            PRIMARY KEY (week, home_team_abbreviation, away_team_abbreviation)
         );
         """,
         """

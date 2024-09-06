@@ -1,7 +1,9 @@
 import json
 import dateutil.parser
+import datetime
 
 import pandas as pd
+import numpy as np
 from fuzzywuzzy import process
 
 from dfsdata.interface import DFSDBInterface
@@ -360,4 +362,66 @@ class DataWrangler:
                                 ON CONFLICT ON CONSTRAINT player_game_stats_pkey
                                 DO UPDATE SET fpts_ppr = EXCLUDED.fpts_ppr
                                 '''
+        self.db.run_format_insert(ins_command, data_to_insert)
+        
+    def insert_vegas_data(self):
+        competitions = self.db.run_command('SELECT * from competitions')
+        files = self.dk_names.vegas_odds_files()
+        odds_data = {
+            'week': [],
+            'home_team': [],
+            'away_team': [],
+            'spread': [],
+            'over_under': [],
+            'last_updated': []
+        }
+        for file in files:
+            with open(file, 'r') as fp:
+                data = json.load(fp)
+            for comp in data:
+                starts_at = dateutil.parser.isoparse(comp['commence_time']).timestamp()
+                home_team = comp['home_team']
+                away_team = comp['away_team']
+                spreads = []
+                over_unders = []
+                updated = []
+                for book in comp['bookmakers']:
+                    results = {
+                        bet['key']: outcome['point'] \
+                            for bet in book['markets'] \
+                            for outcome in bet['outcomes'] \
+                                if outcome['name'] == home_team \
+                                or outcome['name'] == 'Over'
+                    }
+                    updated.append(book.get('last_update', np.nan))
+                    spreads.append(results.get('spreads', np.nan))
+                    over_unders.append(results.get('totals', np.nan))
+                odds_data['week'].append(dk.get_nfl_week(self.db.db_config._YEAR, starts_at))
+                odds_data['home_team'].append(home_team)
+                odds_data['away_team'].append(away_team)
+                odds_data['spread'].append(np.nanmean(spreads))
+                odds_data['over_under'].append(np.nanmean(over_unders))
+                odds_data['last_updated'].append(sorted(updated)[-1])
+        
+        json_odds = pd.DataFrame(odds_data)
+        
+        json_odds['home_team'] = [name.split()[-1].strip() for name in json_odds['home_team'].values]
+        json_odds['away_team'] = [name.split()[-1].strip() for name in json_odds['away_team'].values]
+        merged = competitions.merge(json_odds,
+                                    left_on=['week', 'home_team_name', 'away_team_name'], 
+                                    right_on=['week', 'home_team', 'away_team']
+                                    ).sort_values(by='starts_at').groupby(by=['week', 'home_team_abbreviation', 'away_team_abbreviation']).last().reset_index()
+        vegas_columns = [
+            'week', 'home_team_abbreviation', 'away_team_abbreviation', 'spread', 'over_under', 'last_updated'
+        ]
+        data_to_insert = [tuple(row.values.tolist()) for _, row in merged[vegas_columns].iterrows()]
+        ins_command = '''INSERT INTO vegas_odds(
+                        week, home_team_abbreviation, away_team_abbreviation, spread, over_under, last_updated
+                        ) VALUES %s
+                        ON CONFLICT ON CONSTRAINT vegas_odds_pkey
+                        DO UPDATE 
+                        SET 
+                        spread = EXCLUDED.spread,
+                        over_under = EXCLUDED.over_under,
+                        last_updated = EXCLUDED.last_updated'''
         self.db.run_format_insert(ins_command, data_to_insert)
