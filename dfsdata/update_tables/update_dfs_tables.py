@@ -404,6 +404,7 @@ class DataWrangler:
                     odds_data['spread'].append(np.nanmean(spreads))
                     odds_data['over_under'].append(np.nanmean(over_unders))
                     odds_data['last_updated'].append(sorted(updated)[-1])
+                        
         
         json_odds = pd.DataFrame(odds_data)
         

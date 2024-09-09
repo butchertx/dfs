@@ -22,12 +22,12 @@ PROPS_DOW = [
 ]
 
 contest_reqs = {
-    "thursday single-entry showdown double-ups": {
+    "sunday single-entry showdown GPP": {
         "guaranteed": True,
-        "double_up": True,
+        "double_up": False,
         "multientry": 1,
         "max_entry_fee": [0., 5.],  # this is a range
-        "day": 'Thursday',
+        "day": 'Sunday',
         "this_week": True
     }
 }
