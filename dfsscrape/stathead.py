@@ -14,12 +14,13 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
 from dfsscrape import urls
+import dfsscrape.config as conf
 from dfsutil.timer import Timer
 
 TIMER = Timer()
 
-URL_FUNCS = [urls.NFL_TEAM_GAMES]
-[
+URL_FUNCS = [
+    urls.NFL_TEAM_GAMES,
     urls.NFL_PLAYER_GAMES_PASSING,
     urls.NFL_PLAYER_GAMES_RUSHING,
     urls.NFL_PLAYER_GAMES_RECEIVING,
@@ -38,8 +39,8 @@ URL_FUNCS = [urls.NFL_TEAM_GAMES]
 
 def filename_from_func(func, year):
     func_name = func.__name__.split('.')[-1].lower()
-    parent_dir = pathlib.Path(__file__).parent.resolve()
-    filepath = parent_dir / f'data/{func_name}_{year}.csv'
+    parent_dir = conf.NFL_SEASON_DATA
+    filepath = parent_dir / f'{func_name}_{year}.csv'
     return filepath
 
 class MultipleEmptyColumnNamesException(Exception):
@@ -159,7 +160,7 @@ def read_and_output_all(years: List[str], replace=False):
 
 if __name__ == '__main__':
 
-    years = [str(val) for val in range(2005, 2024)]
+    years = [str(val) for val in range(2024, 2025)]
     # read_and_output_single_query(urls.NFL_PLAYER_GAMES_PASSING, '2016')
     read_and_output_all(years, replace=True)
                 

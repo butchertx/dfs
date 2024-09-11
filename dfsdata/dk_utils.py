@@ -3,6 +3,8 @@ import pandas as pd
 from typing import List
 import pathlib
 
+CURRENT_YEAR = '2024'
+
 WEEK_ONE_STARTS = {'2020': 1599609600, '2021': 1630994400, '2022': 1662444000, '2023': 1693875600, '2024': 1725343200}
 # Wed Sept 9 2020 at 12am
 # Tue Sept 7 2021 at 1am

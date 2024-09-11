@@ -212,6 +212,17 @@ class TrivialProjector(ProjectionModel):
         means['week_num'] = [self.week]*len(means)
         return means
     
+class FantasyProsProjector(ProjectionModel):
+    
+    """
+    Here we just pull the projections straight from the database
+    """
+    
+    def get_projections(self, player_list: pd.DataFrame):
+        """
+        player_list should have name and week as columns, and each row corresponds to a week to project
+        """
+    
 class ResampleProjector(ProjectionModel):
     
     """

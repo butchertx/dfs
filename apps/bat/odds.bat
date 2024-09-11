@@ -1,3 +1,1 @@
-call activate dfs
-python F:\projects\fantasy\dfs\dfsscrape\odds_api.py
-call conda deactivate
+call activate dfs && python F:\projects\fantasy\dfs\dfsscrape\odds_api.py && call conda deactivate
