@@ -1,10 +1,14 @@
-import os
+import os, shutil
 from pathlib import Path
 from datetime import timedelta, datetime
 import json
 import pandas as pd
 import requests
 from lxml import html
+import time
+import random
+import webbrowser
+import zipfile
 
 from draft_kings import Client
 from draft_kings.data import Sport
@@ -12,6 +16,8 @@ from draft_kings.data import Sport
 from dfsscrape.config import ScrapingConfig
 from dfsutil.constants import DK_CONTEST_TYPES
 from dfsscrape import utils
+from dfsdata.dk_utils import get_nfl_week
+from dfsdata.interface import DFSDBInterface
 
 
 def get_contest_info(contest_id):
@@ -42,6 +48,101 @@ def file_is_fresh(filepath: Path) -> bool:
     mtime = os.path.getmtime(filepath)
     now_minus_1day = datetime.now() - timedelta(days=1)
     return datetime.fromtimestamp(mtime) > now_minus_1day
+
+def chunks(lst, n):
+    """Yield successive n-sized chunks from lst."""
+    for i in range(0, len(lst), n):
+        yield lst[i:i + n]
+
+def small_wait():
+    time.sleep(random.uniform(0.5, 1.5))
+
+def med_wait():
+    time.sleep(random.uniform(5.0, 20.0))
+
+def download_contest_entry_data():
+    brave_path = 'C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe'
+    chrome_path = 'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe'
+    browser = 'chrome'
+    browser_path = chrome_path
+    DATA_DUMP = ScrapingConfig().dk_data_path
+    DOWNLOAD_DIR = 'C:\\Users\\Matthew\\Downloads\\'
+    PREV_WEEK = get_nfl_week(str(ScrapingConfig().year)) - 1
+    contest_id_list = DFSDBInterface().run_format_command('SELECT contest_id, entries_max FROM contests WHERE week=%s AND guaranteed = True AND entries_max >= 100', (str(PREV_WEEK),), fetch=True)
+    
+    # sort by entries max, descending, and get contest id only
+    contest_id_list = [id[0] for id in sorted(contest_id_list.values, key=lambda x: x[1], reverse=True)]
+    # contest_id_list = [id[0] for id in contest_id_list]
+
+    # chromedriver = 'E:\\Chromedriver\\chromedriver-92'
+    # chrome_options = webdriver.ChromeOptions()
+    # prefs = {"download.default_directory": DOWNLOAD_DIR}
+    # chrome_options.add_experimental_option("prefs", prefs)
+    # chrome_options.add_argument("--user-data-dir=E:\\NFL_DFS\\scraping\\chrome-data")
+    # os.environ["webdriver.chrome.driver"] = chromedriver
+    # driver = webdriver.Chrome(chromedriver, options=chrome_options)
+    # driver.implicitly_wait(10)
+    # driver.get(windowpath)
+    # time.sleep(10)
+
+    webbrowser.register(browser, None, webbrowser.BackgroundBrowser(browser_path))
+    webbrowser.get(browser).open_new('draftkings.com')
+    med_wait()
+    url = 'draftkings.com/contest/exportfullstandingscsv/' + str(contest_id_list[0])
+    webbrowser.get(browser).open_new_tab(url)
+    med_wait()
+    dl_count = 0
+    for dl_batch in chunks(contest_id_list, 30):
+        dl_list = []
+        dl_count += len(dl_batch)
+        for cid in dl_batch:
+            # get download file.  Download if not in data lake, or unzip and move if in download directory
+            dl_file = os.path.join(DOWNLOAD_DIR, 'contest-standings-' + str(cid))
+            if os.path.isfile(dl_file + '.zip'):
+                try:
+                    with zipfile.ZipFile(dl_file + '.zip', 'r') as zip_ref:
+                        zip_ref.extractall(DATA_DUMP)
+                except:
+                    print('Failed to unzip:', dl_file)
+                else:
+                    os.remove(dl_file + '.zip')
+
+            elif os.path.isfile(dl_file + '.csv'):
+                shutil.move(dl_file + '.csv', DATA_DUMP)
+
+            elif not os.path.isfile(os.path.join(DATA_DUMP, 'contest-standings-' + str(cid) + '.csv')):
+                url = 'draftkings.com/contest/exportfullstandingscsv/' + str(cid)
+                webbrowser.get(browser).open_new_tab(url)
+                dl_list.append(dl_file)
+                # small_wait()
+
+            # else:
+            #     print('Already have results for contest id:', cid)
+
+        if len(dl_list) > 0:
+            time.sleep(20)
+
+        # unzip and/or move all files just downloaded
+        for dl_file in dl_list:
+            if os.path.isfile(dl_file + '.zip'):
+                try:
+                    with zipfile.ZipFile(dl_file + '.zip', 'r') as zip_ref:
+                        zip_ref.extractall(DATA_DUMP)
+                except:
+                    print('Failed to unzip:', dl_file)
+                else:
+                    os.remove(dl_file + '.zip')
+
+            elif os.path.isfile(dl_file + '.csv'):
+                shutil.move(dl_file + '.csv', DATA_DUMP)
+
+            else:
+                print('Didn\'t find:', dl_file)
+
+        print('Moving on to next batch')
+        print('Downloaded/Found ' + str(dl_count) + ' out of ' + str(len(contest_id_list)) + ' contests meeting criteria')
+        if len(dl_list) > 0:
+            med_wait()
 
 
 def main(download_list: bool = False):
@@ -215,4 +316,5 @@ def main(download_list: bool = False):
 
 
 if __name__ == "__main__":
-    main(download_list=True)
+    # main(download_list=True)
+    download_contest_entry_data()

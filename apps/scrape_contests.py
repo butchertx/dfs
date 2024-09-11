@@ -1,6 +1,8 @@
 from dfsdata import dk_utils
 from dfsscrape import draftkings, nfl, config, odds_api, stathead
 
+CONTEST_RESULTS = True
+
 if __name__ == "__main__":
     current_year = str(config.CURRENT_YEAR)
     draftkings.main(download_list=True)
@@ -14,3 +16,5 @@ if __name__ == "__main__":
     stathead.read_and_output_all([dk_utils.CURRENT_YEAR], replace=True)
     
     # scrape draftkings contest results
+    if CONTEST_RESULTS:
+        draftkings.download_contest_entry_data()
