@@ -1,10 +1,12 @@
 import pathlib
 import pandas as pd
 
+from dfsscrape.config import ScrapingConfig
+
+CONFIG = ScrapingConfig()
+
 def get_data_path():
-    parent_dir = pathlib.Path(__file__).parent.resolve()
-    filepath = parent_dir / 'data'
-    return filepath
+    return CONFIG.nfl_data_path
 
 def get_passing_data(year: str):
     file = get_data_path() / f'nfl_player_games_passing_{year}.csv'

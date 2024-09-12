@@ -14,8 +14,10 @@ class ScrapingConfig:
 
     _year: int
     _dk_data_path: pathlib.Path
+    _nfl_data_path: pathlib.Path
 
     def __init__(self, year: int = 2024):
+        self._nfl_data_path = NFL_SEASON_DATA
         if year == 2024:
             self._year = year
             self._dk_data_path = DATA_DUMP_2024
@@ -29,4 +31,8 @@ class ScrapingConfig:
     @property
     def dk_data_path(self):
         return self._dk_data_path
+    
+    @property
+    def nfl_data_path(self):
+        return self._nfl_data_path
 

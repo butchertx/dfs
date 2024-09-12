@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 import pathlib
 import os
 
-from dfsmc.simulate import projection
+from dfsmc.projection import projection
 from dfsutil.constants import SKILL_POSITIONS
 
 

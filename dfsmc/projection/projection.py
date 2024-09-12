@@ -8,13 +8,15 @@ but an ideal, complete solution would provide more information on the distributi
 for each player, relative to their teammates and opponents.
 """
 import pandas as pd
-from typing import Type
+import numpy as np
+from typing import Type, List
+from itertools import product
 
 from dfsmc.simulate import games
 from dfsscrape import get_data as gd
 from dfsutil import constants, transform
     
-class ProjectionModel:
+class PlayerProjectionModel:
     
     """
     We want to project the median, upper and lower quartile, and covariance of fantasy points for all players
@@ -77,13 +79,28 @@ class ProjectionModel:
         self.get_data()
         self.combine_and_filter_data(output_data)
         
-    def get_projections(self, players: pd.DataFrame = None) -> pd.DataFrame:
+    def get_projections(self, players: pd.DataFrame = None, filter_stat_thresholds = True) -> pd.DataFrame:
         """
         Should return a dataframe for player projections with columns: PLAYER_ID_COLUMNS + FANTASY_COLUMNS
         These represent MEAN outcomes: along with the assumption of a Gamma distribution and covariance,
         the full probability distribution should be constructible
         
         (Eventually) Should also return a (sparse) covariance matrix
+        """
+        raise NotImplementedError('Projections are not implemented!')
+    
+    def get_projections_data(self, players: pd.DataFrame = None) -> pd.DataFrame:
+        """
+        Should return a dataframe for modeling player projections with columns: TBD by the model type
+        These are the data that go into a model and can have different features depending
+        on what the model type is.
+        """
+        raise NotImplementedError('Projections Data are not implemented!')
+    
+    def get_projections_data_prepared(self, players: pd.DataFrame = None) -> pd.DataFrame:
+        """
+        Should return a data array and an array of labels that can then be fed into a model/regression.
+        This function should perform the steps needed to preprocess data before the regression/training step
         """
         raise NotImplementedError('Projections are not implemented!')
     
@@ -170,6 +187,10 @@ class ProjectionModel:
         team_cols = [col for col in all_team_columns if col not in player_data_combined.columns]
         self.player_game_data = player_data_combined.merge(self.team_games_data[self.TEAM_ID_COLUMNS + team_cols], on=['week_num', 'team_name_abbr'], how='left')
         self.player_game_data['week_num'] = self.player_game_data['week_num'].astype(int)
+        self.player_game_data['game_location'] = self.player_game_data['game_location'].fillna('')
+        
+        # remove duplicate columns
+        self.player_game_data = self.player_game_data.loc[:,~self.player_game_data.columns.duplicated()].copy()
         if output_data:
             self.player_game_data.to_csv(f'player_data_{self.season}.csv')
     
@@ -185,7 +206,7 @@ class ProjectionModel:
         unaccounted = sorted(list(set([col_name for col_vals in col_list for col_name in col_vals if col_name not in player_cols_accounted + team_cols_accounted])))
         return unaccounted
     
-class TrivialProjector(ProjectionModel):
+class TrivialProjector(PlayerProjectionModel):
     
     """
     Projections are the player's season cumulative mean
@@ -196,7 +217,7 @@ class TrivialProjector(ProjectionModel):
         player_list should have name and week as columns, and each row corresponds to a week to project
         """
         if self.week is None:
-            print('Warning! Trivial Projector was not initialized with a week number so it is projecting for all available weeks')
+            # print('Warning! Trivial Projector was not initialized with a week number so it is projecting for all available weeks')
             weekly_results = []
             for week in range(1,19):
                 self.week = week
@@ -208,11 +229,15 @@ class TrivialProjector(ProjectionModel):
         players_matched = self.player_game_data.merge(player_list, on=['name_display', 'week_num'], how='inner')['name_display']
         cumulative_df = self.player_game_data.loc[(self.player_game_data['week_num'] < self.week) & self.player_game_data['name_display'].isin(players_matched)].copy()
         means = cumulative_df.groupby(['name_display'])['draftkings_points'].mean().reset_index()
-        means = means.merge(self.player_game_data[['name_display', 'team_name_abbr', 'pos_game']].drop_duplicates(), on='name_display')
+        means = means.merge(
+                self.player_game_data.loc[self.player_game_data['week_num'] == self.week, ['name_display', 'team_name_abbr', 'pos_game', 'game_location', 'opp_name_abbr']].drop_duplicates(),
+                on='name_display'
+            )
         means['week_num'] = [self.week]*len(means)
+        self.projections = means.copy()
         return means
     
-class FantasyProsProjector(ProjectionModel):
+class FantasyProsProjector(PlayerProjectionModel):
     
     """
     Here we just pull the projections straight from the database
@@ -223,7 +248,7 @@ class FantasyProsProjector(ProjectionModel):
         player_list should have name and week as columns, and each row corresponds to a week to project
         """
     
-class ResampleProjector(ProjectionModel):
+class ResampleProjector(PlayerProjectionModel):
     
     """
     Make projections for players in a single week.
@@ -245,32 +270,124 @@ class ResampleProjector(ProjectionModel):
         resampled = self.simulator.get_games_data(self.season, self.week)
         grouped = resampled.groupby(['player_name', 'pos', 'team'])['fpts_dk'].agg(['median', 'mean', 'std', 'min', 'max'])
         return grouped
+
+class ProjectionModelTrainer:
+    
+    def __init__(self, season_range: List[int], model_type: Type[PlayerProjectionModel]):
+        self.season_range = season_range
+        self.model_type = model_type
+
+    def prepare_data(self):
+        """
+        Example call:
+        get_projections(range(2017,2023), TrivialProjector))
+        """
+        projections = []
+        for year in self.season_range:
+            projector = self.model_type(year, week=None, output_data=True)
+            projector.apply_stat_thresholds()
+            projections_temp = projector.get_projections(projector.player_game_data[['name_display', 'week_num']].copy())
+            actuals_temp = projector.get_actuals(projector.player_game_data[['name_display', 'week_num']].copy())
+
+            projections_temp['year'] = [year]*len(projections_temp)
+            projections_temp['week_num'] = projections_temp['week_num'].astype(int)
+            projections_temp = projections_temp.rename(columns={'draftkings_points': 'draftkings_points_predicted'})
+            actuals_temp['year'] = [year]*len(actuals_temp)
+
+            projections_temp = projections_temp.merge(actuals_temp, on=['year', 'week_num', 'team_name_abbr', 'pos_game', 'name_display'], how='inner')
+            projections.append(projections_temp)
+        results = pd.concat(projections).dropna(subset=['draftkings_points_predicted', 'draftkings_points'])
+        self.prepared_data = results
+        return results.copy()
+    
+    def get_residuals(self):
+        if not hasattr(self, 'prepared_data'):
+            self.prepare_data()
+        self.prepared_data['res'] = self.prepared_data['draftkings_points'] - self.prepared_data['draftkings_points_predicted']
+        return self.prepared_data.copy()
+    
+    def get_gamma(self):
+        def shift_zero(vals) -> pd.Series:
+            shift = np.min(vals)
+            vals = vals - np.min(vals)
+            return vals, shift
         
-def get_projections(data_range, projector_obj: Type[ProjectionModel]):
-    """
-    Example call:
-    get_projections(range(2017,2023), TrivialProjector))
-    """
-    projections = []
-    for year in data_range:
-        projector = projector_obj(year, week=None, output_data=True)
-        projector.apply_stat_thresholds()
-        projections_temp = projector.get_projections(projector.player_game_data[['name_display', 'week_num']].copy())
-        actuals_temp = projector.get_actuals(projector.player_game_data[['name_display', 'week_num']].copy())
-
-        projections_temp['year'] = [year]*len(projections_temp)
-        projections_temp['week_num'] = projections_temp['week_num'].astype(int)
-        projections_temp = projections_temp.rename(columns={'draftkings_points': 'draftkings_points_predicted'})
-        actuals_temp['year'] = [year]*len(actuals_temp)
-
-        projections_temp = projections_temp.merge(actuals_temp, on=['year', 'week_num', 'team_name_abbr', 'pos_game', 'name_display'], how='inner')
-        projections.append(projections_temp)
-    results = pd.concat(projections).dropna(subset=['draftkings_points_predicted', 'draftkings_points'])
-    results['res'] = results['draftkings_points_predicted'] - results['draftkings_points']
-    results['res_sq'] = results['res']**2
-    results = results.sort_values(by='res_sq', ascending=True).reset_index().drop(columns=['index']).drop_duplicates()
-    return results
+        if not hasattr(self, 'prepared_data'):
+            self.prepare_data()
+        if 'res' not in self.prepared_data.columns:
+            self.get_residuals()
+        position_groups = self.prepared_data.groupby('pos_game')['res']
+        results = {}
+        for pos, ser in position_groups:
+            shift = np.min(ser)
+            mean = np.mean(ser - shift)
+            sigma = np.std(ser - shift)
+            results[pos] = (mean**2 / sigma**2, mean / sigma**2, shift) # alpha, beta
+        return results
+    
+    @staticmethod
+    def _sum_points_by_team_week(df: pd.DataFrame):
+        """
+        Meant to by used in groupby.apply()
+        
+        Assume groupby is by year, week_num, team.
+        Sum up all columns (points, predicted, and res, probably?) by position
+        """
+        columns = ['draftkings_points', 'draftkings_points_predicted', 'res']
+        by_position = df.groupby('pos_game')[columns].sum()
+        new_row_dict = {val: [by_position.loc[val[0], val[1]]] for val in product(by_position.index.values, by_position.columns)}
+        return pd.DataFrame(new_row_dict)
+    
+    @staticmethod
+    def _match_team_games(df: pd.DataFrame):
+        """
+        For missing teams, we'll fill the values with means instead of NaNs to keep the existing
+        teams data in the analysis
+        """
+        # merge on home/away
+        df['home'] = (df['game_location'] != '@')
+        df = df.drop(columns=[('game_location', '')])
+        home = df.loc[df['home']].drop(columns=('home', '')).rename(columns={'team_name_abbr': 'home_team', 'opp_name_abbr': 'away_team'})
+        away = df.loc[~df['home']].drop(columns=('home', '')).rename(columns={'team_name_abbr': 'away_team', 'opp_name_abbr': 'home_team'})
+        doubled = home.merge(away, on=[('home_team', ''), ('away_team', '')], suffixes=['_home', '_away'], how='outer')
+        
+        # fill nan columns
+        num_columns = [col for col in doubled.columns if col not in [('home_team', ''), ('away_team', '')]]
+        doubled[num_columns] = doubled[num_columns].fillna(doubled[num_columns].mean())
+        
+        return doubled
+        
+    
+    def get_player_game_covariance(self, column='res'):
+        """
+        NOTE: there are a bunch of missing team-games so we usually only have
+        28-30 on a given week, even before BYEs. The analysis doesn't require 32
+        per week but it would be nice to figure out where we're losing these team-games.
+        Example: TAM is missing from column 'team_name_abbr' for 2017 week 2
+        """
+        if not hasattr(self, 'prepared_data'):
+            self.prepare_data()
+        if 'res' not in self.prepared_data.columns:
+            self.get_residuals()
+        
+        # sum each team
+        pos_sums = self.prepared_data.groupby(by=['year', 'week_num', 'team_name_abbr', 'game_location', 'opp_name_abbr']).apply(self._sum_points_by_team_week, include_groups=False)
+        pos_sums.index = pos_sums.index.droplevel(-1)
+        pos_sums = pos_sums.reset_index()
+        
+        # match each team with opponent
+        game_sums = pos_sums.groupby(by=['year', 'week_num']).apply(self._match_team_games, include_groups=False)
+        game_sums.index = game_sums.index.droplevel(-1)
+        # game_sums = game_sums.reset_index()
+        
+        # reconfigure columns and compute covariance
+        game_sums = game_sums.loc[:, game_sums.columns.get_level_values(1) == column]
+        game_sums.columns = game_sums.columns.droplevel(-1)
+        covar = game_sums.cov()
+        return covar
 
 if __name__ ==  "__main__":
-    projections = get_projections(range(2017,2023), TrivialProjector)
-    print(projections.head(100))
+    projection_trainer = ProjectionModelTrainer(list(range(2017,2024)), TrivialProjector)
+    projection_trainer.prepare_data()
+    cov = projection_trainer.get_player_game_covariance()
+    print(cov)
