@@ -11,6 +11,8 @@ import pandas as pd
 import numpy as np
 from typing import Type, List
 from itertools import product
+import pathlib
+import os
 
 from dfsmc.simulate import games
 from dfsscrape import get_data as gd
@@ -206,6 +208,10 @@ class PlayerProjectionModel:
         unaccounted = sorted(list(set([col_name for col_vals in col_list for col_name in col_vals if col_name not in player_cols_accounted + team_cols_accounted])))
         return unaccounted
     
+    @staticmethod
+    def str_name():
+        raise NotImplementedError()
+    
 class TrivialProjector(PlayerProjectionModel):
     
     """
@@ -236,6 +242,10 @@ class TrivialProjector(PlayerProjectionModel):
         means['week_num'] = [self.week]*len(means)
         self.projections = means.copy()
         return means
+    
+    @staticmethod
+    def str_name():
+        return 'TrivialProjector'
     
 class FantasyProsProjector(PlayerProjectionModel):
     
@@ -358,7 +368,7 @@ class ProjectionModelTrainer:
         return doubled
         
     
-    def get_player_game_covariance(self, column='res'):
+    def get_player_game_covariance(self, column='res', output_results=False):
         """
         NOTE: there are a bunch of missing team-games so we usually only have
         28-30 on a given week, even before BYEs. The analysis doesn't require 32
@@ -384,10 +394,20 @@ class ProjectionModelTrainer:
         game_sums = game_sums.loc[:, game_sums.columns.get_level_values(1) == column]
         game_sums.columns = game_sums.columns.droplevel(-1)
         covar = game_sums.cov()
-        return covar
+        corr = game_sums.corr()
+        if output_results:
+            outdir = pathlib.Path(__file__).parent / 'models'
+            os.makedirs(outdir, exist_ok=True)
+            outfile = outdir / f'covariance_{self.model_type.str_name()}.csv'
+            covar.to_csv(outfile)
+            
+        return covar, corr
 
 if __name__ ==  "__main__":
     projection_trainer = ProjectionModelTrainer(list(range(2017,2024)), TrivialProjector)
     projection_trainer.prepare_data()
-    cov = projection_trainer.get_player_game_covariance()
+    cov, corr = projection_trainer.get_player_game_covariance(output_results=True)
     print(cov)
+    print(corr)
+    
+    
