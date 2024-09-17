@@ -16,7 +16,7 @@ from draft_kings.data import Sport
 from dfsscrape.config import ScrapingConfig
 from dfsutil.constants import DK_CONTEST_TYPES
 from dfsscrape import utils
-from dfsdata.dk_utils import get_nfl_week
+from dfsutil.dk_utils import get_nfl_week
 from dfsdata.interface import DFSDBInterface
 
 

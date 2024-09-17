@@ -8,7 +8,8 @@ from fuzzywuzzy import process
 
 from dfsdata.interface import DFSDBInterface
 from dfsdata.path_name import ContestDataNames
-from dfsdata import configure_db, path_name, dk_utils as dk
+from dfsdata import configure_db, path_name
+from dfsutil import dk_utils as dk
 
 
 class DataWrangler:

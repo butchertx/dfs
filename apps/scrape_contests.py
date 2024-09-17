@@ -1,6 +1,6 @@
 from argparse import ArgumentParser
 
-from dfsdata import dk_utils
+from dfsutil import dk_utils
 from dfsscrape import draftkings, nfl, config, odds_api, stathead
 
 if __name__ == "__main__":
