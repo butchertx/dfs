@@ -39,6 +39,14 @@ class Contest:
         query = "SELECT * FROM payouts WHERE contest_id = %s"
         payout_data = self.db_interface.run_format_command(query, (self.contest_id, ))
         return Payout(payout_data)
+    
+    def get_draftables(self):
+        """
+        just a pandas dataframe w/ player names
+        """
+        query = "SELECT d.name, contests.week FROM contests JOIN draftables d ON contests.draft_group_id = d.draft_group_id WHERE contests.contest_id = %s"
+        data = self.db_interface.run_format_command(query, (self.contest_id, ))
+        return data.drop_duplicates()
 
 
 class Payout:

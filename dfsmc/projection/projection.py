@@ -91,20 +91,12 @@ class PlayerProjectionModel:
         """
         raise NotImplementedError('Projections are not implemented!')
     
-    def get_projections_data(self, players: pd.DataFrame = None) -> pd.DataFrame:
+    def get_covariance(self) -> pd.DataFrame:
         """
-        Should return a dataframe for modeling player projections with columns: TBD by the model type
-        These are the data that go into a model and can have different features depending
-        on what the model type is.
+        Should return the covariance matrix. Assume get_projections has
+        already populated the player projections
         """
-        raise NotImplementedError('Projections Data are not implemented!')
-    
-    def get_projections_data_prepared(self, players: pd.DataFrame = None) -> pd.DataFrame:
-        """
-        Should return a data array and an array of labels that can then be fed into a model/regression.
-        This function should perform the steps needed to preprocess data before the regression/training step
-        """
-        raise NotImplementedError('Projections are not implemented!')
+        raise NotImplementedError('Covariance model is not implemented!')
     
     def get_actuals(self, players: pd.Series = None):
         if players is not None:
@@ -212,6 +204,10 @@ class PlayerProjectionModel:
     def str_name():
         raise NotImplementedError()
     
+    @staticmethod
+    def cov_model_path():
+        raise NotImplementedError()
+    
 class TrivialProjector(PlayerProjectionModel):
     
     """
@@ -232,8 +228,10 @@ class TrivialProjector(PlayerProjectionModel):
             return pd.concat(weekly_results).drop_duplicates().reset_index().drop(columns='index')
         
         # Get only rows with players that have data for the specified week
-        players_matched = self.player_game_data.merge(player_list, on=['name_display', 'week_num'], how='inner')['name_display']
+        players_matched = self.player_game_data.loc[self.player_game_data['name_display'].isin(player_list['name_display']), 'name_display'].values # self.player_game_data.merge(player_list, on=['name_display', 'week_num'], how='inner')['name_display']
+        print(players_matched)
         cumulative_df = self.player_game_data.loc[(self.player_game_data['week_num'] < self.week) & self.player_game_data['name_display'].isin(players_matched)].copy()
+        print(cumulative_df)
         means = cumulative_df.groupby(['name_display'])['draftkings_points'].mean().reset_index()
         means = means.merge(
                 self.player_game_data.loc[self.player_game_data['week_num'] == self.week, ['name_display', 'team_name_abbr', 'pos_game', 'game_location', 'opp_name_abbr']].drop_duplicates(),
@@ -243,9 +241,17 @@ class TrivialProjector(PlayerProjectionModel):
         self.projections = means.copy()
         return means
     
+    def get_covariance(self) -> pd.DataFrame:
+        proj = self.projections
+        cov = pd.read_csv(self.cov_model_path())
+    
     @staticmethod
     def str_name():
         return 'TrivialProjector'
+    
+    @staticmethod
+    def cov_model_path():
+        return pathlib.Path(__file__).parent / 'models' / f'covariance_{TrivialProjector.str_name()}.csv'
     
 class FantasyProsProjector(PlayerProjectionModel):
     
@@ -398,7 +404,7 @@ class ProjectionModelTrainer:
         if output_results:
             outdir = pathlib.Path(__file__).parent / 'models'
             os.makedirs(outdir, exist_ok=True)
-            outfile = outdir / f'covariance_{self.model_type.str_name()}.csv'
+            outfile = self.model_type.cov_model_path()
             covar.to_csv(outfile)
             
         return covar, corr
