@@ -14,6 +14,7 @@ from itertools import product
 import pathlib
 import os
 
+from dfsdata.interface import DFSDBInterface
 from dfsmc.simulate import games
 from dfsscrape import get_data as gd
 from dfsutil import constants, transform
@@ -200,6 +201,41 @@ class PlayerProjectionModel:
         unaccounted = sorted(list(set([col_name for col_vals in col_list for col_name in col_vals if col_name not in player_cols_accounted + team_cols_accounted])))
         return unaccounted
     
+    def populate_upcoming_matchups(self, draft_group_id: int):
+        """
+        Populate player_data with missing matchups given a draft group id
+        
+        Need new columns 
+        ['name_display', 'team_name_abbr', 'pos_game', 'game_location', 'opp_name_abbr']
+        """
+        query = """
+            SELECT
+            draft.name, draft.position, draft.team_abbreviation,
+            comp.home_team_abbreviation, comp.away_team_abbreviation
+            FROM draftables draft
+            JOIN competitions comp
+            ON draft.competition_id = comp.id
+            WHERE draft.draft_group_id = %s
+        """
+        db_interface = DFSDBInterface()
+        results = db_interface.run_format_command(query, (draft_group_id,))
+        results['week_num'] = [self.week]*len(results)
+        home = results['home_team_abbreviation'].values[0]
+        away = results['away_team_abbreviation'].values[0]
+        opp_dict = {home: away, away: home}
+        rename_cols = {
+            'name': 'name_display',
+            'team_abbreviation': 'team_name_abbr',
+            'position': 'pos_game'
+        }
+        results = results.rename(columns=rename_cols)
+        results['opp_name_abbr'] = results['team_name_abbr'].map(opp_dict)
+        results['game_location'] = ['']*len(results)
+        results.loc[results['team_name_abbr'] == away, 'game_location'] = ['@']*len(results.loc[results['team_name_abbr'] == away, 'game_location'])
+        drop_cols = ['home_team_abbreviation', 'away_team_abbreviation']
+        self.player_game_data = pd.concat([self.player_game_data, results.drop(columns=drop_cols)], ignore_index=True)
+        return self.player_game_data
+    
     @staticmethod
     def str_name():
         raise NotImplementedError()
@@ -207,6 +243,10 @@ class PlayerProjectionModel:
     @staticmethod
     def cov_model_path():
         raise NotImplementedError()
+    
+    def read_covariance(self):
+        infile = self.cov_model_path()
+        return pd.read_csv(infile, index_col='Unnamed: 0')
     
 class TrivialProjector(PlayerProjectionModel):
     
@@ -217,6 +257,8 @@ class TrivialProjector(PlayerProjectionModel):
     def get_projections(self, player_list: pd.DataFrame):
         """
         player_list should have name and week as columns, and each row corresponds to a week to project
+        
+        future (True) is to populate the current or next week's matchups from the database
         """
         if self.week is None:
             # print('Warning! Trivial Projector was not initialized with a week number so it is projecting for all available weeks')
@@ -229,9 +271,7 @@ class TrivialProjector(PlayerProjectionModel):
         
         # Get only rows with players that have data for the specified week
         players_matched = self.player_game_data.loc[self.player_game_data['name_display'].isin(player_list['name_display']), 'name_display'].values # self.player_game_data.merge(player_list, on=['name_display', 'week_num'], how='inner')['name_display']
-        print(players_matched)
         cumulative_df = self.player_game_data.loc[(self.player_game_data['week_num'] < self.week) & self.player_game_data['name_display'].isin(players_matched)].copy()
-        print(cumulative_df)
         means = cumulative_df.groupby(['name_display'])['draftkings_points'].mean().reset_index()
         means = means.merge(
                 self.player_game_data.loc[self.player_game_data['week_num'] == self.week, ['name_display', 'team_name_abbr', 'pos_game', 'game_location', 'opp_name_abbr']].drop_duplicates(),
@@ -372,7 +412,6 @@ class ProjectionModelTrainer:
         doubled[num_columns] = doubled[num_columns].fillna(doubled[num_columns].mean())
         
         return doubled
-        
     
     def get_player_game_covariance(self, column='res', output_results=False):
         """

@@ -7,6 +7,7 @@ STATHEAD_POSITIONS = ['QB', 'RB', 'WR', 'TE', 'TE/QB', 'K']
 
 # Draftkings
 DK_CONTEST_TYPES = {
+    '357': 'The Chunky Pick', # (same as captain mode)
     '354': 'NFL Single Stat (Total Yards)',
     '353': 'NFL Single Stat (Touchdowns)',
     '285': 'Superflex Special',
