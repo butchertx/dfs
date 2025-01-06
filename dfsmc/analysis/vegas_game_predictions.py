@@ -3,7 +3,7 @@ import numpy as np
 import datetime
 # import matplotlib.pyplot as plt
 
-from dfsmc.projection import projection
+from dfsmc.projection import projection_data
 from dfsutil import files, transform
 
 pd.set_option('display.max_columns', 100)
@@ -128,7 +128,7 @@ def set_cumulative_averages(df: pd.DataFrame):
     return df
 
 def get_data(year):
-    projector = projection.PlayerProjectionModel(year, None, output_data=True)
+    projector = projection_data.PlayerProjectionModel(year, None, output_data=True)
     
     df = projector.player_game_data.copy()
     
