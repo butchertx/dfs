@@ -10,6 +10,7 @@ DK_CONTEST_TYPES = {
     '357': 'The Chunky Pick', # (same as captain mode)
     '354': 'NFL Single Stat (Total Yards)',
     '353': 'NFL Single Stat (Touchdowns)',
+    '301': 'NFL Best Ball Playoff Sit + Go',
     '285': 'Superflex Special',
     '192': 'Snake Showdown',
     '189': 'Snake',
