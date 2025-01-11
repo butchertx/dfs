@@ -16,6 +16,8 @@ if __name__ == "__main__":
     draftkings.main(download_list=True)
     try:
         nfl.read_and_output_injury_report(nfl.URL_FUNCS[0], current_year, dk_utils.get_nfl_week(current_year), replace=True)
+    except config.NoDataException:
+        print(f'No data found for year {current_year}, week {dk_utils.get_nfl_week(current_year)}! Continuing...')
     except AttributeError as err:
         print('No injury report data found!')
     odds_api.get_and_write_current_nfl_odds()

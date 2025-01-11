@@ -19,7 +19,7 @@ from dfsmc.simulate import games
 from dfsscrape import get_data as gd
 from dfsutil import constants, transform
     
-class PlayerProjectionModel:
+class PlayerProjectionData:
     
     """
     We want to project the median, upper and lower quartile, and covariance of fantasy points for all players
@@ -247,8 +247,8 @@ class PlayerProjectionModel:
     def read_covariance(self):
         infile = self.cov_model_path()
         return pd.read_csv(infile, index_col='Unnamed: 0')
-    
-class TrivialProjector(PlayerProjectionModel):
+
+class TrivialProjector(PlayerProjectionData):
     
     """
     Projections are the player's season cumulative mean
@@ -293,7 +293,7 @@ class TrivialProjector(PlayerProjectionModel):
     def cov_model_path():
         return pathlib.Path(__file__).parent / 'models' / f'covariance_{TrivialProjector.str_name()}.csv'
     
-class FantasyProsProjector(PlayerProjectionModel):
+class FantasyProsProjector(PlayerProjectionData):
     
     """
     Here we just pull the projections straight from the database
@@ -304,7 +304,7 @@ class FantasyProsProjector(PlayerProjectionModel):
         player_list should have name and week as columns, and each row corresponds to a week to project
         """
     
-class ResampleProjector(PlayerProjectionModel):
+class ResampleProjector(PlayerProjectionData):
     
     """
     Make projections for players in a single week.
@@ -329,7 +329,7 @@ class ResampleProjector(PlayerProjectionModel):
 
 class ProjectionModelTrainer:
     
-    def __init__(self, season_range: List[int], model_type: Type[PlayerProjectionModel]):
+    def __init__(self, season_range: List[int], model_type: Type[PlayerProjectionData]):
         self.season_range = season_range
         self.model_type = model_type
 

@@ -128,7 +128,7 @@ def set_cumulative_averages(df: pd.DataFrame):
     return df
 
 def get_data(year):
-    projector = projection_data.PlayerProjectionModel(year, None, output_data=True)
+    projector = projection_data.PlayerProjectionData(year, None, output_data=True)
     
     df = projector.player_game_data.copy()
     
