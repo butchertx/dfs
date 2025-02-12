@@ -18,7 +18,28 @@ from dfsdata.interface import DFSDBInterface
 from dfsmc.simulate import games
 from dfsscrape import get_data as gd
 from dfsutil import constants, transform
-    
+
+PLAYER_ID_COLUMNS = ['name_display', 'week_num', 'team_name_abbr', 'pos_game']
+TEAM_ID_COLUMNS = ['week_num', 'date', 'team_name_abbr', 'game_location', 'opp_name_abbr']
+FANTASY_COLUMNS = ['draftkings_points']
+SCORING_COLUMNS = [
+    'rush_att', 'rush_yds_per_att', 'rush_td', 'rec', 'rec_yds_per_rec', 'rec_td', 'two_pt_md',
+    'pass_cmp', 'pass_yds_per_cmp', 'pass_td', 'pass_int', 'fumbles', 'fumbles_rec_td', 'all_td' 
+]
+PLAYER_STAT_COLUMNS = [
+    'pass_adj_net_yds_per_att', 'pass_air_yds_per_att', 'pass_att', 'pass_blitzed', 'pass_hurried', 'pass_on_target_pct',
+    'pass_play_action', 'pass_poor_throw_pct', 'pass_pressured_pct', 'pass_rpo', 'pass_sacked', 'pass_tgt_yds_per_att',
+    'pocket_time', 'touches', 'catch_pct', 'targets',
+    'rec_adot', 'rec_air_yds_per_rec', 'rec_drop_pct', 'rec_yac_per_rec', 'rec_yds_per_tgt',
+    'rush_scrambles_yds_per_att', 'rush_yds_bc_per_rush'
+]
+TEAM_STAT_COLUMNS = [
+    'cover', 'duration', 'game_day_of_week', 'game_num', 'game_result', 'ou_result', 'over_under',
+    'plays_defense', 'plays_offense', 'points', 'points_combined', 'points_diff', 'points_opp',
+    'time_of_poss', 'tot_yds', 'vegas_line', 'yds_per_play_defense', 'yds_per_play_offense'
+]
+ALL_COLUMNS = PLAYER_ID_COLUMNS + FANTASY_COLUMNS + SCORING_COLUMNS + PLAYER_STAT_COLUMNS + TEAM_STAT_COLUMNS
+
 class PlayerProjectionData:
     
     """
@@ -56,25 +77,7 @@ class PlayerProjectionData:
     Pass yds total - event
     
     """
-    PLAYER_ID_COLUMNS = ['name_display', 'week_num', 'team_name_abbr', 'pos_game']
-    TEAM_ID_COLUMNS = ['week_num', 'date', 'team_name_abbr', 'game_location', 'opp_name_abbr']
-    FANTASY_COLUMNS = ['draftkings_points']
-    SCORING_COLUMNS = [
-        'rush_att', 'rush_yds_per_att', 'rush_td', 'rec', 'rec_yds_per_rec', 'rec_td', 'two_pt_md',
-        'pass_cmp', 'pass_yds_per_cmp', 'pass_td', 'pass_int', 'fumbles', 'fumbles_rec_td', 'all_td' 
-    ]
-    PLAYER_STAT_COLUMNS = [
-        'pass_adj_net_yds_per_att', 'pass_air_yds_per_att', 'pass_att', 'pass_blitzed', 'pass_hurried', 'pass_on_target_pct',
-        'pass_play_action', 'pass_poor_throw_pct', 'pass_pressured_pct', 'pass_rpo', 'pass_sacked', 'pass_tgt_yds_per_att',
-        'pocket_time', 'touches', 'catch_pct', 'targets',
-        'rec_adot', 'rec_air_yds_per_rec', 'rec_drop_pct', 'rec_yac_per_rec', 'rec_yds_per_tgt',
-        'rush_scrambles_yds_per_att', 'rush_yds_bc_per_rush'
-    ]
-    TEAM_STAT_COLUMNS = [
-        'cover', 'duration', 'game_day_of_week', 'game_num', 'game_result', 'ou_result', 'over_under',
-        'plays_defense', 'plays_offense', 'points', 'points_combined', 'points_diff', 'points_opp',
-        'time_of_poss', 'tot_yds', 'vegas_line', 'yds_per_play_defense', 'yds_per_play_offense'
-    ]
+    
     
     def __init__(self, season: int, week: int, output_data: bool = False):
         self.season = season
@@ -99,13 +102,16 @@ class PlayerProjectionData:
         """
         raise NotImplementedError('Covariance model is not implemented!')
     
+    def get_all_data(self):
+        return self.player_game_data.copy()[ALL_COLUMNS]
+    
     def get_actuals(self, players: pd.Series = None):
         if players is not None:
             players_included = self.player_game_data.merge(players, on=['name_display', 'week_num'], how='inner')
             data = self.player_game_data.loc[self.player_game_data['name_display'].isin(players_included['name_display'])].copy()
         else:
             data = self.player_game_data.copy()
-        return data[self.PLAYER_ID_COLUMNS + self.FANTASY_COLUMNS + ['rush_att', 'pass_att', 'targets']]
+        return data[PLAYER_ID_COLUMNS + FANTASY_COLUMNS + ['rush_att', 'pass_att', 'targets']]
     
     def apply_stat_thresholds(self):
         self.player_game_data[['pass_att', 'rush_att', 'targets']] = self.player_game_data[['pass_att', 'rush_att', 'targets']].fillna(0.0)
@@ -148,21 +154,21 @@ class PlayerProjectionData:
         ]
         for attr_name in self.data_attrs:
             col_names = getattr(self, attr_name).columns
-            if not all([col in col_names for col in self.PLAYER_ID_COLUMNS]) \
-                and not all([col in col_names for col in self.TEAM_ID_COLUMNS]):
+            if not all([col in col_names for col in PLAYER_ID_COLUMNS]) \
+                and not all([col in col_names for col in TEAM_ID_COLUMNS]):
                 print('Error: Data does not have all required player columns')
                 print(f'Table: {attr_name}')
                 exit(1)
         
     def combine_and_filter_data(self, output_data=False):
-        player_data_columns = self.FANTASY_COLUMNS + self.SCORING_COLUMNS + self.PLAYER_STAT_COLUMNS
-        all_team_columns = self.TEAM_ID_COLUMNS + self.TEAM_STAT_COLUMNS
+        player_data_columns = FANTASY_COLUMNS + SCORING_COLUMNS + PLAYER_STAT_COLUMNS
+        all_team_columns = TEAM_ID_COLUMNS + TEAM_STAT_COLUMNS
         
         # get dataframe combining player data, using only unique columns
         player_dfs = []
         for attr_name in self.player_data_attrs:
             # if len(player_data_columns_remaining) > 0:
-            column_subset = self.PLAYER_ID_COLUMNS + player_data_columns
+            column_subset = PLAYER_ID_COLUMNS + player_data_columns
             current_attr = getattr(self, attr_name).copy()
             attr_columns = [str(col) for col in current_attr.columns.values]
             current_slice = current_attr[[col for col in column_subset if col in attr_columns]]
@@ -177,10 +183,10 @@ class PlayerProjectionData:
         player_data_combined = player_data_combined[player_data_combined['pos_game'].isin(constants.OFFENSE_POSITIONS)]
         player_data_combined = player_data_combined.drop_duplicates()
         # remove empty rows
-        data_columns = [col for col in player_data_combined if col not in self.PLAYER_ID_COLUMNS]
+        data_columns = [col for col in player_data_combined if col not in PLAYER_ID_COLUMNS]
         player_data_combined = player_data_combined.loc[player_data_combined[data_columns].dropna(how='all').index]
         team_cols = [col for col in all_team_columns if col not in player_data_combined.columns]
-        self.player_game_data = player_data_combined.merge(self.team_games_data[self.TEAM_ID_COLUMNS + team_cols], on=['week_num', 'team_name_abbr'], how='left')
+        self.player_game_data = player_data_combined.merge(self.team_games_data[TEAM_ID_COLUMNS + team_cols], on=['week_num', 'team_name_abbr'], how='left')
         self.player_game_data['week_num'] = self.player_game_data['week_num'].astype(int)
         self.player_game_data['game_location'] = self.player_game_data['game_location'].fillna('')
         
@@ -191,8 +197,8 @@ class PlayerProjectionData:
     
     def list_unaccounted_columns(self):
         col_list = []
-        player_cols_accounted = self.PLAYER_ID_COLUMNS + self.FANTASY_COLUMNS + self.SCORING_COLUMNS + self.PLAYER_STAT_COLUMNS
-        team_cols_accounted = self.TEAM_ID_COLUMNS + self.TEAM_STAT_COLUMNS
+        player_cols_accounted = PLAYER_ID_COLUMNS + FANTASY_COLUMNS + SCORING_COLUMNS + PLAYER_STAT_COLUMNS
+        team_cols_accounted = TEAM_ID_COLUMNS + TEAM_STAT_COLUMNS
         print(len(player_cols_accounted + team_cols_accounted) - 2)
         print(len(list(set(player_cols_accounted + team_cols_accounted))))
         for attr_name in self.data_attrs:
@@ -327,32 +333,32 @@ class ResampleProjector(PlayerProjectionData):
         grouped = resampled.groupby(['player_name', 'pos', 'team'])['fpts_dk'].agg(['median', 'mean', 'std', 'min', 'max'])
         return grouped
 
-class ProjectionModelTrainer:
+class ProjectionDataLoader:
     
-    def __init__(self, season_range: List[int], model_type: Type[PlayerProjectionData]):
+    def __init__(self, season_range: List[int]):
         self.season_range = season_range
-        self.model_type = model_type
 
     def prepare_data(self):
         """
         Example call:
         get_projections(range(2017,2023), TrivialProjector))
         """
-        projections = []
+        player_data = []
         for year in self.season_range:
-            projector = self.model_type(year, week=None, output_data=True)
+            projector = PlayerProjectionData(year, week=None, output_data=False)
             projector.apply_stat_thresholds()
-            projections_temp = projector.get_projections(projector.player_game_data[['name_display', 'week_num']].copy())
-            actuals_temp = projector.get_actuals(projector.player_game_data[['name_display', 'week_num']].copy())
+            # projections_temp = projector.get_projections(projector.player_game_data[['name_display', 'week_num']].copy())
+            actuals_temp = projector.get_all_data()
 
-            projections_temp['year'] = [year]*len(projections_temp)
-            projections_temp['week_num'] = projections_temp['week_num'].astype(int)
-            projections_temp = projections_temp.rename(columns={'draftkings_points': 'draftkings_points_predicted'})
+            # projections_temp['year'] = [year]*len(projections_temp)
+            # projections_temp['week_num'] = projections_temp['week_num'].astype(int)
+            # projections_temp = projections_temp.rename(columns={'draftkings_points': 'draftkings_points_predicted'})
             actuals_temp['year'] = [year]*len(actuals_temp)
 
-            projections_temp = projections_temp.merge(actuals_temp, on=['year', 'week_num', 'team_name_abbr', 'pos_game', 'name_display'], how='inner')
-            projections.append(projections_temp)
-        results = pd.concat(projections).dropna(subset=['draftkings_points_predicted', 'draftkings_points'])
+            # projections_temp = projections_temp.merge(actuals_temp, on=['year', 'week_num', 'team_name_abbr', 'pos_game', 'name_display'], how='inner')
+            # projections.append(projections_temp)
+            player_data.append(actuals_temp)
+        results = pd.concat(player_data).dropna(subset=['draftkings_points'])
         self.prepared_data = results
         return results.copy()
     
@@ -449,10 +455,22 @@ class ProjectionModelTrainer:
         return covar, corr
 
 if __name__ ==  "__main__":
-    projection_trainer = ProjectionModelTrainer(list(range(2017,2024)), TrivialProjector)
-    projection_trainer.prepare_data()
-    cov, corr = projection_trainer.get_player_game_covariance(output_results=True)
-    print(cov)
-    print(corr)
     
+    # Test Cases
+    # Pull data for a single season
+    # make sure all the columns exist and are populated
+    player_data = ProjectionDataLoader([2023])
+    player_data.prepare_data()
+    print(player_data.prepared_data.columns)
+    print(len(player_data.prepared_data))
+    print(len(player_data.prepared_data[['name_display', 'year', 'week_num']].drop_duplicates()))
+    print(player_data.prepared_data.loc[player_data.prepared_data['pos_game'] == 'WR', ['name_display', 'year', 'week_num', 'rec', 'rec_yds_per_rec', 'rec_td', 'draftkings_points']].sort_values(by='draftkings_points', ascending=False).head(20))
+    
+    # Do the same for multiple seasons
+    player_data = ProjectionDataLoader(range(2017, 2024))
+    player_data.prepare_data()
+    print(player_data.prepared_data.columns)
+    print(len(player_data.prepared_data))
+    print(len(player_data.prepared_data[['name_display', 'year', 'week_num']].drop_duplicates()))
+    print(player_data.prepared_data.loc[player_data.prepared_data['pos_game'] == 'WR', ['name_display', 'year', 'week_num', 'rec', 'rec_yds_per_rec', 'rec_td', 'draftkings_points']].sort_values(by='draftkings_points', ascending=False).head(20))
     
