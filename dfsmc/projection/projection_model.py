@@ -65,16 +65,19 @@ class TrivialProjector(PlayerProjectionModel):
         """
         Compute the cummean of all players 'draftkings_points' for each week, each season
         save a new dataframe that will map year, name, week, team, pos to a point value
-        
-        The cummean here is inclusive of the current week, so for example a row with week_num 5
-        will include the cummean of all weeks up to and including week 5.
         """
+        # Calculate cumsum for each player
         grouped_by_year = self.data.groupby('year')
         for _, group in grouped_by_year:
             sorted = group.sort_values(by='week_num')
             cummean = sorted.groupby(self.id_without_week)['draftkings_points'].expanding().mean()
             idx_vals = [val[3] for val in cummean.index.values]
             self.data.loc[idx_vals, 'draftkings_points_cummean'] = cummean.values
+        
+        # fill in missing weeks for each player
+        index_vals = pd.MultiIndex.from_tuples(zip(self.data['year'].unique(), self.data['week_num'].unique()), names=['year', 'week_num'])
+        self.data = self.data.set_index(['year', 'week_num']).reindex(index_vals).reset_index().sort_values(by=['year', 'week_num'])
+        pass
         
     def get_projections(self, test_examples: pd.DataFrame, targets: List[str]) -> pd.DataFrame:
         """
@@ -87,11 +90,13 @@ class TrivialProjector(PlayerProjectionModel):
         """
         assert all([t in self.data.columns for t in targets]), 'Targets not in data!'
         test_examples = test_examples[['year'] + PLAYER_ID_COLUMNS].copy()
+        test_examples = test_examples.set_index(self.id_without_week)
         self.data = self.data.sort_values(by=['year', 'week_num'], ascending=False)
         for year_week in zip(test_examples['year'].unique(), test_examples['week_num'].unique()):
             data_mask = (self.data['year'] == year_week[0]) & (self.data['week_num'] < year_week[1])
             cum_vals = self.data.loc[data_mask, ['draftkings_points_cummean'] + PLAYER_ID_COLUMNS].groupby(self.id_without_week).first()
             examples_mask = (test_examples['year'] == year_week[0]) & (test_examples['week_num'] == year_week[1])
+            examples_mask = test_examples.loc[examples_mask, self.id_without_week].set_index(self.id_without_week).index.isin(cum_vals.index)
             test_examples.loc[examples_mask, 'draftkings_points'] = test_examples.loc[examples_mask, self.id_without_week].apply(lambda x: cum_vals.loc[x, 'draftkings_points_cummean'], axis=0)
         pass
     
@@ -106,3 +111,4 @@ if __name__ == '__main__':
     print(test_examples.head())
     
     predictions = trivial.get_projections(test_examples, ['draftkings_points'])
+    print(predictions.head())
