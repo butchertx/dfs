@@ -359,7 +359,7 @@ class ProjectionDataLoader:
             # projections.append(projections_temp)
             player_data.append(actuals_temp)
         results = pd.concat(player_data).dropna(subset=['draftkings_points'])
-        self.prepared_data = results
+        self.prepared_data = results.reset_index().drop(columns='index')
         return results.copy()
     
     def get_residuals(self):
