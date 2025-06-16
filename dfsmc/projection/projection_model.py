@@ -16,6 +16,8 @@ in order to apply the model.
 
 "CONCEPT DRIFT": https://arxiv.org/pdf/1010.4784
 The concept class may change over time.
+
+TODO: Look up Gaussian Process regression and Bayes estimators in scikit-learn
 """
 import pandas as pd
 import numpy as np
@@ -34,10 +36,19 @@ from dfsmc.projection import metrics
 ID_WITHOUT_WEEK = [col for col in PLAYER_ID_COLUMNS if col != 'week_num']
     
 class PlayerProjectionModel:
+    """
+    Interface: A PlayerProjectionModel should have the following members:
+        - train_predictions: a dataframe containing the predictions for each player
+            - index columns should be ['year'] + PLAYER_ID_COLUMNS
+            - columns should be ['draftkings_points', 'drafkings_points_actual']
+        - train_examples: a dataframe containing the features for each player
+            - index columns should be ['year'] + PLAYER_ID_COLUMNS
+            - columns should be the features used to train the model
+    """
     
     
     # member data for model training
-    test_examples: pd.DataFrame
+    train_examples: pd.DataFrame
     target: pd.Series
     feature_names: np.ndarray
     target_names: np.ndarray
@@ -90,17 +101,42 @@ class PlayerProjectionModel:
             cumulative.loc[idx_vals, new_cumul_columns] = cumavg.values
         
         # fill in missing weeks for each player
-        uniques = [cumulative[col].unique() for col in idx_cols]
-        idx_vals = product(*uniques)
+        # need unique player/year combos and year/week combos
+        def product_of_tuples(tup_list_1, tup_list_2):
+            """
+            Given two lists of tuples, return the product of the two lists
+            The second element of tup_list_1 matches the first element of tup_list_2
+            
+            example:
+            tup_list_1 = [(1, 'a'), (2, 'b')]
+            tup_list_2 = [('a', 'x'), ('a', 'y'), ('b', 'x'), ('b', 'y')]
+            product_of_tuples(tup_list_1, tup_list_2) = [(1, 'a', 'x'), (1, 'a', 'y'), (2, 'b', 'x'), (2, 'b', 'y')]
+            """
+            map_tup_2 = {}
+            for tup2 in tup_list_2:
+                if tup2[0] not in map_tup_2:
+                    map_tup_2[tup2[0]] = []
+                map_tup_2[tup2[0]].append(tup2[1])
+            result = []
+            for tup1 in tup_list_1:
+                for tup2 in map_tup_2[tup1[1]]:
+                    result.append(tup1 + (tup2,))
+            return result
+            
+        unique_player_years = np.unique(cumulative[['name_display', 'year']].values, axis=0)
+        unique_year_weeks = np.unique(cumulative[['year', 'week_num']].values, axis=0)
+        idx_vals = product_of_tuples(unique_player_years, unique_year_weeks)
         index_vals = pd.MultiIndex.from_tuples(list(idx_vals), names=idx_cols)
         cumulative = cumulative.set_index(idx_cols).reindex(index_vals).reset_index().sort_values(by=idx_cols)
         cumulative = cumulative[all_cols + new_cumul_columns].copy()
         for new_col in new_cumul_columns + other_idx_cols:
-            cumulative[new_col] = cumulative.groupby('name_display')[new_col].ffill()
+            cumulative[new_col] = cumulative.groupby(['year', 'name_display'])[new_col].ffill()
             if new_col in new_cumul_columns:
-                cumulative[new_col] = cumulative.groupby('name_display')[new_col].shift(1)
+                # this is for numerical columns
+                cumulative[new_col] = cumulative.groupby(['year', 'name_display'])[new_col].shift(1)
             else:
-                cumulative[new_col] = cumulative.groupby('name_display')[new_col].bfill()
+                # this is for team_name and pos_game
+                cumulative[new_col] = cumulative.groupby(['year', 'name_display'])[new_col].bfill()
         cumulative = cumulative[all_cols + new_cumul_columns].copy()
         return cumulative
     
@@ -118,14 +154,13 @@ class TrivialProjector(PlayerProjectionModel):
         save a new dataframe that will map year, name, week, team, pos to a point value
         """
         # Calculate cumsum for each player
-        self.test_examples = self.compute_cumulative(self.raw_data, ['draftkings_points'], cumul_func)
-        self.test_examples = self.test_examples.rename(columns={'draftkings_points': 'draftkings_points_actual'})
-        self.test_examples = self.test_examples.rename(columns={f'draftkings_points_cumul_{cumul_func}': 'draftkings_points'})
-        self.test_examples = self.test_examples.set_index(['year'] + PLAYER_ID_COLUMNS)
-        print(self.test_examples.index.names)
-        print(self.test_examples.columns)
+        self.train_examples = self.compute_cumulative(self.raw_data, ['draftkings_points'], cumul_func)
+        self.train_examples = self.train_examples.rename(columns={'draftkings_points': 'draftkings_points_actual'})
+        self.train_examples = self.train_examples.rename(columns={f'draftkings_points_cumul_{cumul_func}': 'draftkings_points'})
+        self.X, self.y = self.train_examples[['draftkings_points']].values, self.train_examples['draftkings_points_actual'].values
+        self.train_predictions = self.train_examples.set_index(['year'] + PLAYER_ID_COLUMNS)[['draftkings_points', 'draftkings_points_actual']]
         
-    def get_projections(self, test_examples: pd.DataFrame) -> pd.DataFrame:
+    def get_projections(self, examples: pd.DataFrame) -> pd.DataFrame:
         """
         The trivial projector will simply return the cumulative season mean of the target.
         A player's first game of the season will be projected as 0 for all targets in the first iteration
@@ -134,7 +169,7 @@ class TrivialProjector(PlayerProjectionModel):
         
         test_examples minimal columns: ['year'] + ProjectionData.PLAYER_ID_COLUMNS
         """
-        return self.test_examples.loc[test_examples.index].fillna(0)
+        return self.train_predictions.loc[examples.index]
     
     def get_covariance(self) -> pd.DataFrame:
         return None
@@ -144,6 +179,11 @@ class RegressionProjector(PlayerProjectionModel):
     scale_and_pca = Pipeline([('scaler', StandardScaler()), ('pca', PCA(n_components=3))])
     
     QB_cols = ['pass_att', 'pass_sacked', 'rush_att', 'rush_td', 'pass_cmp', 'pass_yds', 'pass_td', 'pass_int', 'fumbles', 'draftkings_points']
+    RB_cols = ['rush_att', 'rush_yds', 'rush_td', 'rec', 'rec_yds', 'rec_td', 'fumbles', 'draftkings_points']
+    WR_cols = ['rec', 'rec_yds', 'rec_td', 'rush_att', 'rush_yds', 'rush_td', 'fumbles', 'draftkings_points']
+    TE_cols = ['rec', 'rec_yds', 'rec_td', 'rush_att', 'rush_yds', 'rush_td', 'fumbles', 'draftkings_points']
+    K_cols = ['fgm', 'fga', 'xpm', 'xpa', 'draftkings_points']
+    DST_cols = ['sack', 'int', 'fum_rec', 'safety', 'td', 'pts_allowed', 'draftkings_points']
     
     def __init__(self, regressor = LinearRegression(), year_range: List[int] = None):
         super().__init__()
@@ -159,11 +199,18 @@ class RegressionProjector(PlayerProjectionModel):
         cumul_df = self.compute_cumulative(qb_df, cum_columns, 'mean')
         cumul_df['draftkings_points_actual'] = cumul_df['draftkings_points']
         self.test_examples = cumul_df.drop(columns=cum_columns).rename(columns={f'{col}_cumul_mean': col for col in cum_columns}).dropna()
+        
+        # set up results dataframe and model
+        self.test_examples = self.test_examples.set_index(['year'] + PLAYER_ID_COLUMNS)
         self.features, self.target = self.test_examples[cum_columns].values, self.test_examples['draftkings_points_actual'].values
         self.pca_result = self.scale_and_pca.fit_transform(self.features)
         self.model = self.regressor.fit(self.pca_result, self.target)
-        print(self.test_examples.index.names)
-        print(self.test_examples.columns)
+        
+        # Add predictions to test examples df        
+        self.test_examples['draftkings_points'] = self.model.predict(self.pca_result)
+        self.test_examples = self.test_examples[['draftkings_points', 'draftkings_points_actual']]
+        self.y_pred = self.test_examples['draftkings_points'].values
+        self.y_truth = self.test_examples['draftkings_points_actual'].values
     
     def get_projections(self, test_examples: pd.DataFrame) -> pd.DataFrame:
         features = test_examples[self.QB_cols].values
@@ -174,22 +221,27 @@ class RegressionProjector(PlayerProjectionModel):
         pass
 
 def train_and_eval_model(model: PlayerProjectionModel):
-    test_examples = model.test_examples.copy().reset_index().set_index(['year'] + PLAYER_ID_COLUMNS)
-    target = test_examples[['draftkings_points_actual']].rename(columns={'draftkings_points_actual': 'draftkings_points'})
+    train_examples = model.train_examples.copy().reset_index().set_index(['year'] + PLAYER_ID_COLUMNS)
+    target = train_examples[['draftkings_points_actual']].rename(columns={'draftkings_points_actual': 'draftkings_points'})
     
-    predictions = model.get_projections(test_examples)
+    predictions = model.get_projections(train_examples)
     
-    results, residuals = metrics.evaluate_projections(predictions['draftkings_points'], target, metrics.RMSE)
-    return results
+    rmse, _ = metrics.evaluate_projections(predictions['draftkings_points'], target, metrics.RMSE)
+    coverage, _ = metrics.evaluate_projections(predictions['draftkings_points'], target, metrics.coverage)
+    predictions = predictions.reset_index()
+    print(predictions.loc[predictions['name_display'] == 'Drew Brees'].head(20))
+    print(predictions.loc[predictions['week_num'] == 1].head(20))
+    return rmse, coverage
 
 if __name__ == '__main__':
     ####### Trivial
-    results = train_and_eval_model(TrivialProjector())
-    print(results)
+    rmse, coverage = train_and_eval_model(TrivialProjector())
+    print(rmse)
+    print(coverage)
     
     ####### Linear
-    results = train_and_eval_model(RegressionProjector(LinearRegression()))
-    print(results)
+    # results = train_and_eval_model(RegressionProjector(LinearRegression()))
+    # print(results)
     
     ## Logistic needs some modifications and the others just use different loss functions that don't change the results for such a simple model
     
